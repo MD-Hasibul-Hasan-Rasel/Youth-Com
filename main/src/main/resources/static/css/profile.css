@@ -1,0 +1,116 @@
+body,
+html {
+  font-size: 10px;
+}
+
+.registration_box {
+  width: 100rem;
+}
+
+.topportion_reg {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.base_logo_link {
+  /* height: 6rem; */
+}
+
+.topportion_reg h1 {
+  font-weight: 600;
+  font-size: 3rem;
+}
+
+/* user details */
+.user_details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user_image {
+  height: 30rem;
+  width: 30rem;
+  border-radius: 50%;
+  border: #6b6e70 1px solid;
+  margin-bottom: 5rem;
+}
+
+.user_details p {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.edit_profile_btn:link,
+.edit_profile_btn:active,
+.edit_profile_btn:visited {
+  padding: 1rem 3rem;
+  text-decoration: none;
+  color: #fff;
+  background-color: #3fa9f5;
+  font-size: 1.5rem;
+}
+
+.edit_profile_btn:hover {
+  background-color: #51b7ff;
+}
+
+.user_profile_recents {
+  margin-top: 10rem;
+  width: 100%;
+  padding: 0 1rem;
+  font-size: 1.5rem;
+}
+
+.user_profile_recents table {
+  margin: 0 auto;
+}
+
+.user_profile_recents th {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.user_profile_recents tr:nth-child(even) {
+  background-color: #ced4da;
+}
+
+.user_profile_recents th,
+tr,
+td {
+  border-collapse: collapse;
+  padding: 1rem;
+
+  white-space: nowrap;
+}
+
+.user_profile_recents_h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 4rem;
+}
+
+.data {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  column-gap: 1rem;
+  margin: 3rem;
+}
+
+.status_buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.order_buttons:link,
+.order_buttons:active,
+.order_buttons:visited {
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  color: #fff;
+  background-color: #3fa9f5;
+  font-size: 1.5rem;
+  height: fit-content;
+  /* margin: 3rem 1rem; */
+}

@@ -1,0 +1,72 @@
+.admin_main_button01 {
+  border-left: #3fa9f5 0.8rem solid;
+  background-color: rgba(63, 169, 245, 0.24);
+}
+
+.dashboard_main {
+  margin-left: 4rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard_card_box {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  /* column-gap: 5rem; */
+  /* margin-left: 3rem; */
+}
+
+.dashboard_cards {
+  height: fit-content;
+  width: 30rem;
+  padding: 4rem 4rem 4rem 2rem;
+  border-radius: 1rem;
+}
+
+.dashboard_cards .h_img {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard_cards .h_img h1 {
+  font-size: 3rem;
+}
+
+.dashboard_cards span {
+  font-size: 1.5rem;
+}
+
+.recent {
+  height: 100%;
+  width: 100%;
+  border-radius: 1rem;
+  margin-top: 5rem;
+  padding: 3rem;
+  overflow: hidden;
+}
+
+.recent h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.recent table {
+  width: 100%;
+}
+
+.recent table thead tr th {
+  text-align: left;
+  font-size: 1.3rem;
+}
+
+.recent table tbody tr td {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.recent table thead tr th,
+.recent table tbody tr td {
+  padding: 0.8rem 0;
+}

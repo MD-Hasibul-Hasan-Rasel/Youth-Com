@@ -1,0 +1,38 @@
+@media (max-width: 950px) {
+  .login_box {
+    width: 100%;
+    height: fit-content;
+    /* margin: 0 auto; */
+    position: relative;
+    box-shadow: none !important;
+  }
+
+  .leftportion {
+    width: 100%;
+  }
+
+  .imgdiv {
+    padding: 0;
+  }
+
+  .rightportion {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100% !important;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: all 1s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+
+  .exp_colp_button {
+    display: block;
+  }
+
+  .exp_colp_button i {
+    transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+}

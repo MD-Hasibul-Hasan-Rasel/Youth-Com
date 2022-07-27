@@ -1,0 +1,92 @@
+@media (max-width: 650px) {
+  body,
+  html {
+    font-size: 9px;
+    /* background-color: aqua; */
+  }
+
+  main {
+    width: 100%;
+  }
+  /* toprated */
+
+  .toprated_cards {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+
+  .carousel_section {
+    height: 40rem;
+    font-size: 6px !important;
+  }
+
+  .slide_text_common_h1 {
+    font-size: 2.5rem !important;
+  }
+
+  .slide_text_common_span {
+    font-size: 1.2rem !important;
+  }
+
+  .slide_text_common a {
+    /* font-size: 0.8rem !important; */
+    width: 17rem !important;
+  }
+
+  .carousel_section .slide_box .indicatordiv .indicator {
+    height: 0.6rem;
+    width: 0.6rem;
+  }
+
+  /* footer */
+
+  .flex_column {
+    align-items: center;
+  }
+
+  .footer_main {
+    grid-template-columns: repeat(1, 1fr) !important;
+    row-gap: 5rem;
+    justify-self: left;
+  }
+
+  .glass_logo {
+    grid-column: 1/2 !important;
+    /* justify-self: normal; */
+  }
+
+  .menu_footer {
+    grid-column: 1/2 !important;
+  }
+
+  .contacts_footer {
+    grid-column: 1/2 !important;
+  }
+  .connections_and_about {
+    grid-column: 1/2 !important;
+  }
+  .gotop {
+    grid-column: 1/2 !important;
+    justify-self: center !important;
+  }
+
+  .footer_box,
+  .footer_box a {
+    font-size: 16px;
+  }
+
+  .footer_main .connections_and_about {
+    row-gap: 5rem;
+  }
+
+  .connections {
+    align-self: center;
+  }
+
+  .connections h2 {
+    text-align: center;
+  }
+
+  .connections .connection_icons i {
+    font-size: 3rem;
+  }
+}

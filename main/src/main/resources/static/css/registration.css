@@ -1,0 +1,64 @@
+body {
+  font-size: 10px;
+  /* position: relative; */
+  height: fit-content;
+}
+
+.registration_box {
+  margin: 5rem auto;
+  width: fit-content;
+  padding: 5rem;
+  border-radius: 1rem;
+}
+
+.topportion_reg {
+  display: flex;
+  gap: 12rem;
+}
+
+.base_logo_link,
+.user_login_heading {
+  margin: 0 0 5rem 0;
+}
+
+.topportion_reg h1 {
+  font-weight: 600;
+}
+
+form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
+
+.validated {
+  color: red;
+  font-size: 1.5rem;
+}
+
+/* responsive */
+
+@media (max-width: 720px) {
+  .registration_box {
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .topportion_reg {
+    /* display: flex; */
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .extraalinks {
+    text-align: center;
+  }
+
+  .user_login_heading {
+    text-align: center;
+  }
+}

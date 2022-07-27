@@ -1,0 +1,74 @@
+@media (max-width: 1285px) {
+  .topbar {
+    width: 100%;
+    padding: 0 2rem;
+  }
+
+  .main_search_box {
+    display: none;
+  }
+
+  .user_profile {
+    margin: 0 1.5rem;
+  }
+
+  .notification_button {
+    display: none;
+  }
+
+  .cart_button {
+    display: none;
+  }
+
+  .menu_button {
+    display: block;
+  }
+
+  .subtopbar {
+    display: none;
+  }
+
+  .subtopbar_carousel_section {
+    display: block;
+  }
+
+  /* toprated */
+  main {
+    width: 100%;
+  }
+
+  .toprated_cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .blogpost_categories {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* footer */
+  .footer_main {
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 5rem;
+    justify-self: left;
+  }
+
+  .glass_logo {
+    grid-column: 1/2;
+    /* justify-self: normal; */
+  }
+
+  .menu_footer {
+    grid-column: 2/3;
+  }
+
+  .contacts_footer {
+    grid-column: 1/2;
+  }
+  .connections_and_about {
+    grid-column: 2/3;
+  }
+  .gotop {
+    grid-column: 1/2;
+    /* justify-self: center; */
+  }
+}

@@ -46,6 +46,34 @@ html {
   visibility: visible !important;
 }
 
+.registration_result {
+  position: absolute;
+  top: 2%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-size: 1.5rem;
+}
+
+.login_result {
+  /* border: 1px solid #87252e; */
+  background-color: #f8d7da;
+  color: #87252e;
+  padding: 0.2rem 1rem;
+  z-index: 999;
+  font-size: 1.5rem;
+  width: fit-content;
+}
+
+.login_result_green {
+  /* border: 1px solid #87252e; */
+  background-color: #d4edd9;
+  color: #4c8259;
+  padding: 0.2rem 1rem;
+  z-index: 999;
+  font-size: 1.5rem;
+  width: fit-content;
+}
+
 /* header portion */
 
 .flex_column {

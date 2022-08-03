@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -156,7 +156,7 @@
         <div class="topbar header_primary_section">
           <a href="index.html" class="base_logo_link">
             <img
-              src="images/base_logo02.png"
+              th:src="@{/images/base_logo02.png}"
               alt="main-logo"
               height="40"
               width="40"
@@ -174,15 +174,39 @@
           </form>
           <div class="user_essn">
             <div class="user_profile gen_box_shadow">
-              <img
-                class="user_profile_img"
-                src="images/anonymous.png"
-                alt="user_profile"
-              /><span><!--UserName-->Username</span>
+              <!--  <div sec:authorize="isAuthenticated()">
+              	<img
+                	class="user_profile_img"                
+                	th:src="@{user.photosImagePath}"
+                	alt="user_profile"
+              	/>
+              </div>
+              
+              <div sec:authorize="!isAuthenticated()">
+              
+              </div>
+              -->
+              	<img
+                	class="user_profile_img"                	
+                	src="images/anonymous.png"
+                	alt="user_profile"
+              	/>
+              
+              <span sec:authentication="principal.username" sec:authorize="isAuthenticated()"></span>
+              <span sec:authorize="!isAuthenticated()">User</span>
+              
               <div class="profile_logout">
-                <!-- <a class="view_profile" href="#">View profile</a> -->
-                <!-- <a class="logout" href="#">Logout</a> -->
-                <a class="login" href="user_login.html">Login</a>
+              
+  			  	<!-- <div th:if="${param.logout}">-->
+  			  	<div sec:authorize="isAuthenticated()">
+  				 	<a class="view_profile" href="#">View profile</a> 
+                 	<a class="logout" th:href="@{/logout}">Logout</a> 
+  			  	</div>
+              	<div sec:authorize="!isAuthenticated()">
+  				 	<a class="login" th:href="@{/user_login}">Login</a>
+  			  	</div>
+  			  	
+                              
               </div>
             </div>
             <div class="bell_cart">
@@ -191,6 +215,7 @@
                 <i class="fa-solid fa-bell"></i>
                 <!-- <div class="notification_dropdown">
                   <div class="not_text">Hello There! Welcome</div>
+                  
                 </div> -->
               </button>
               <button class="cart_button">
@@ -631,46 +656,51 @@
               <div class="tab">
                 <input type="checkbox" id="chck1" />
                 <label class="tab-label" for="chck1"
-                  >Who are the sellers?</label
+                  >Who are the buyers & sellers?</label
                 >
                 <div class="tab-content">
-                  People who are still studying or related to those sectors are
-                  the sellers. Our sellers collect products from the wholesalers
-                  and sell those products at the retail level.
+                  People still studying or related can become a seller.
+				  Our sellers collect products from the wholesalers
+                  and sell those products at the retail level. And anyone can become a buyer.
                 </div>
               </div>
               <div class="tab">
                 <input type="checkbox" id="chck2" />
                 <label class="tab-label" for="chck2"
-                  >Why can't I comment in the Blogs?</label
+                  >Why can not I access in the Blogs?</label
                 >
                 <div class="tab-content">
                   If you are not signed in, and trying to access the blog page
-                  then you will not be able to comment or do other stuffs.
+                  then you will not be able to comment or do other stuffs. 
+                  So, we recommend logging in first before accessing it.
                 </div>
               </div>
               <div class="tab">
                 <input type="checkbox" id="chck3" />
-                <label class="tab-label" for="chck3">I have issues.</label>
+                <label class="tab-label" for="chck3">How to buy a product?</label>
+                <div class="tab-content">
+                  Firstly, you have to register a customer account. Choose your product/products
+                  from desired categories and place order with your address. Make your payment and 
+                  confirm your order with payment details. And that's it. You are all set to receive
+                  your product that will be delivered to you within time.
+                </div>
+              </div>
+              <div class="tab">
+                <input type="checkbox" id="chck4" />
+                <label class="tab-label" for="chck4">I have issues.</label>
                 <div class="tab-content">
                   Please go for the support link provided below and let us know
                   what happened.
                 </div>
               </div>
               <div class="tab">
-                <input type="checkbox" id="chck4" />
-                <label class="tab-label" for="chck4">Item 2</label>
-                <div class="tab-content">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. A,
-                  in!
-                </div>
-              </div>
-              <div class="tab">
                 <input type="checkbox" id="chck5" />
-                <label class="tab-label" for="chck5">Item 2</label>
+                <label class="tab-label" for="chck5">Why choose youth com!</label>
                 <div class="tab-content">
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. A,
-                  in!
+                   'Youth com.' provides not only a e-commerce platform for students
+                   as well as introduces information sharing blogposts that connects people.
+                   Main purpose of this platform is to bring ease and uniqueness to all people using
+                   it. 
                 </div>
               </div>
             </div>

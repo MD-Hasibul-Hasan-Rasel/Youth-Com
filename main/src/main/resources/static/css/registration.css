@@ -38,6 +38,28 @@ form {
   font-size: 1.5rem;
 }
 
+.file_upload_box {
+  position: relative;
+}
+
+.file_upload_box img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 3rem;
+}
+
+.uploaded_image {
+  display: none;
+  border: 1px solid #3fa9f5;
+}
+
+.image_file_upload {
+  height: 8rem;
+  opacity: 0;
+}
+
 /* responsive */
 
 @media (max-width: 720px) {

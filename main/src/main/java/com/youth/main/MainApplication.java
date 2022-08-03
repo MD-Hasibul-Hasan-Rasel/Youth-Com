@@ -11,3 +11,7 @@ public class MainApplication {
 	}
 
 }
+
+/* Notes To Remind
+ * Must use name attribute in login feature for spring security automated authentication and login
+ * so that it can send data otherwise it will be null.*/

@@ -1,11 +1,19 @@
 package com.youth.main.web;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,7 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.youth.main.filehandle.FileUploadUtil;
+import com.youth.main.mailservice.EmailDetails;
+import com.youth.main.mailservice.EmailService;
 import com.youth.main.model.UserModel;
 import com.youth.main.service.UserServiceImpl;
 import com.youth.main.web.dto.UserRegistrationDto;
@@ -32,31 +41,23 @@ public class UserRegistrationController {
 	
 	@Autowired
 	private UserServiceImpl userServiceImpl;
-//
-//   public UserRegistrationController(UserService userService) {
-//      super();
-//      this.userService = userService;
-//   }
 	
-//	private UserRepository userRepository;
-
-
-//	public UserRegistrationController(UserRepository userRepository) {
-//	    super();
-//	    this.userRepository = userRepository;
-//	}
-
-//	@ModelAttribute("user")
-//	public UserRegistrationDto userRegistrationDto() {
-//		return new UserRegistrationDto();
-//	}
+	@Autowired 
+	private EmailService emailService;
 
 	@GetMapping
 	public String RegistrationForm(Model model) {
-		model.addAttribute("user", new UserRegistrationDto());
-		return "user_registration";
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth.getPrincipal() instanceof UserDetails) {
+			return "redirect:/index";
+		}else {
+			model.addAttribute("user", new UserRegistrationDto());
+			return "user_registration";
+		}
+		
 	}
 
+	
 	@PostMapping
 	public String registerUserAccount(@Valid @ModelAttribute("user") UserRegistrationDto userRegistrationDto,
 									  BindingResult result,
@@ -87,14 +88,40 @@ public class UserRegistrationController {
 				
 				
 //				image upload
-				String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+//				String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+				String fileName = userRegistrationDto.getUsername()+".jpg";
 				userRegistrationDto.setPhoto(fileName);
-//		        User savedUser = repo.save(user);
-		        String uploadDir = "uploads/" + userRegistrationDto.getUsername();
-		        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 				
+//				save data to database
 				userServiceImpl.save(userRegistrationDto);
-				
+								
+		        String uploadDir = "./src/main/resources/static/uploads/" + userRegistrationDto.getUsername();
+		        Path uploadPath = Paths.get(uploadDir);
+		        
+//				Email sending		               
+		        EmailDetails emailDetails = new EmailDetails();
+		        emailDetails.setRecipient(email);
+		        emailDetails.setSubject("Registration successfull.");
+		        emailDetails.setMsgBody("Dear Sir/Madam, we are very happy to have you with us. Start shopping . Or you can also "
+        				+ "join the community.");
+		        
+		        emailService.sendSimpleMail(emailDetails);
+		        
+		        
+		        if(!Files.exists(uploadPath)){
+		        	Files.createDirectories(uploadPath);
+		        }
+		        
+		        try (InputStream inputstream = multipartFile.getInputStream()){
+		        	Path filePath = uploadPath.resolve(fileName);
+		        	Files.copy(inputstream, filePath, StandardCopyOption.REPLACE_EXISTING);
+		        	
+		        }catch(IOException e) {
+		        	throw new IOException("Couldn't save the uploaded image."+fileName);
+		        }
+		        
+		        
+		        
 				model.addAttribute("user",userRegistrationDto);
 				session.setAttribute("message","Registration successful.");
 			}else {
@@ -105,9 +132,9 @@ public class UserRegistrationController {
 			
 			
 		}catch(Exception e) {
-//			session.setAttribute("message","Error Signing up user."+e.getMessage());
-			session.setAttribute("message","Error Signing up user. This issue maybe due to"
-					+ " already existing email address or other credentials. Please try with different ones.");
+			session.setAttribute("message","Error Signing up user."+e.getMessage());
+//			session.setAttribute("message","Error Signing up user. This issue maybe due to"
+//					+ " already existing email address or other credentials. Please try with different ones.");
 		}
 	     
 	   

@@ -111,11 +111,16 @@ body {
   font-size: 1.5rem;
   font-weight: 500;
   text-decoration: none;
-  padding: 0.5rem 1.5rem;
+  padding: 1rem 1.5rem;
   display: block;
   color: #f1f3f5;
   border-radius: 1rem;
-  border: #3fa9f5 2px solid;
+  border: none;
+  background-color: #d13444;
+}
+
+.cart_item_discard:hover {
+  background-color: #bb2d3b;
 }
 
 .notification_item_remove {

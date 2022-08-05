@@ -39,12 +39,12 @@ public class UserModel {
    @Column(nullable = true, length = 64)
    private String photos;
    
-   @Transient
+   /*@Transient
    public String getPhotosImagePath() {
-       if (photos == null) return null;
+       if (photos == null || username == null) return null;
         
-       return "/uploads/" + username + "/" + photos;
-   }
+       return "/src/main/resources/static/uploads/" + username + "/" + photos;
+   }*/
 
    @ManyToMany(fetch = FetchType.EAGER, 
                    cascade = CascadeType.ALL)

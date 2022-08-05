@@ -46,6 +46,16 @@ html {
   visibility: visible !important;
 }
 
+.exit_mobile_navigation_slider {
+  background-color: transparent;
+  border: none;
+  margin: 3rem;
+}
+
+.exit_mobile_navigation_slider img {
+  height: 3rem;
+}
+
 .registration_result {
   position: absolute;
   top: 2%;

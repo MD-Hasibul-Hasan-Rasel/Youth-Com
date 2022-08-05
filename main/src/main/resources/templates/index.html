@@ -98,6 +98,9 @@
 
     <div class="overlay">
       <div class="navigation_mobile_slider">
+      	<button class="exit_mobile_navigation_slider">
+          <img src="svg/cross.svg" alt="exit" />
+        </button>
         <nav class="navigation">
           <h2>Market<span>place</span></h2>
           <a href="" class="nav_link_button">
@@ -154,7 +157,7 @@
     <header>
       <div class="topbar_box">
         <div class="topbar header_primary_section">
-          <a href="index.html" class="base_logo_link">
+          <a th:href="@{/}" class="base_logo_link">
             <img
               th:src="@{/images/base_logo02.png}"
               alt="main-logo"
@@ -173,24 +176,27 @@
             <button type="submit">GO</button>
           </form>
           <div class="user_essn">
-            <div class="user_profile gen_box_shadow">
-              <!--  <div sec:authorize="isAuthenticated()">
-              	<img
+            <div class="user_profile gen_box_shadow" >
+              <!--  
+              <div sec:authorize="isAuthenticated()"></div>
+              -->
+              <div sec:authorize="isAuthenticated()"><img
                 	class="user_profile_img"                
-                	th:src="@{user.photosImagePath}"
+                	th:src="@{'/uploads/' + ${username} + '/'
+                	+ ${username} + '.jpg'}"
                 	alt="user_profile"
-              	/>
-              </div>
+              	/></div>
+              	
+              
               
               <div sec:authorize="!isAuthenticated()">
-              
-              </div>
-              -->
               	<img
                 	class="user_profile_img"                	
                 	src="images/anonymous.png"
                 	alt="user_profile"
-              	/>
+              		/>
+              </div>
+              	
               
               <span sec:authentication="principal.username" sec:authorize="isAuthenticated()"></span>
               <span sec:authorize="!isAuthenticated()">User</span>
@@ -659,7 +665,8 @@
                   >Who are the buyers & sellers?</label
                 >
                 <div class="tab-content">
-                  People still studying or related can become a seller.
+                  This platform is basically for the students who want to support
+                  him/herself by becoming a retail product seller. 
 				  Our sellers collect products from the wholesalers
                   and sell those products at the retail level. And anyone can become a buyer.
                 </div>
@@ -726,18 +733,18 @@
           </div>
           <div class="menu_footer flex_column">
             <h2>Menu</h2>
-            <a href="" class="footer_main_a">Home</a>
-            <a href="" class="footer_main_a">Category</a>
-            <a href="" class="footer_main_a">Blogspot</a>
-            <a href="" class="footer_main_a">Services</a>
-            <a href="" class="footer_main_a">Contact</a>
+            <a th:href="@{/}" class="footer_main_a">Home</a>
+            <a th:href="@{/user_login}" class="footer_main_a">SignIn</a>
+            <a th:href="@{/user_registration}" class="footer_main_a">Registration</a>
+            <a th:href="@{/seller_login}" class="footer_main_a">Seller SignIn</a>
+            <a th:href="@{/seller_registration}" class="footer_main_a">Seller Registration</a>
           </div>
           <div class="contacts_footer flex_column">
             <h2>Contacts</h2>
-            <a href="" class="footer_main_a">Home</a>
-            <a href="" class="footer_main_a">Category</a>
+            <a href="" class="footer_main_a">Get Support</a>
+            <a href="" class="footer_main_a">Profile</a>
             <a href="" class="footer_main_a">Blogspot</a>
-            <a href="" class="footer_main_a">Services</a>
+            <a href="" class="footer_main_a">Categories</a>
             <a href="" class="footer_main_a">Contact</a>
           </div>
           <div class="connections_and_about">
@@ -748,10 +755,10 @@
             <div class="connections flex-column">
               <h2>Connections</h2>
               <div class="connection_icons">
-                <a href=""><i class="fa-brands fa-youtube-square"></i></a>
-                <a href=""><i class="fa-brands fa-linkedin-square"></i></a>
-                <a href=""><i class="fa-brands fa-facebook-square"></i></a>
-                <a href=""><i class="fa-brands fa-github-square"></i></a>
+                <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube-square"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fa-brands fa-linkedin-square"></i></a>
+                <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-square"></i></a>
+                <a href="https://github.com/MD-Hasibul-Hasan-Rasel/Youth-Com" target="_blank"><i class="fa-brands fa-github-square"></i></a>
               </div>
             </div>
           </div>

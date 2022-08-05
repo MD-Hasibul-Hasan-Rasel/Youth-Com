@@ -81,11 +81,6 @@ const slide_texts = [
   slide_6_text,
 ];
 
-// smooth scrolling
-gotopButton.addEventListener("click", function () {
-  header.scrollIntoView({ behavior: "smooth" });
-});
-
 // cart modal handler
 open_cart.forEach((opc) =>
   opc.addEventListener("click", function () {
@@ -333,3 +328,8 @@ setInterval(function () {
   sliderCounterCheck = 0;
   firstCheck = 0;
 }, 10000);
+
+// smooth scrolling
+gotopButton.addEventListener("click", function () {
+  header.scrollIntoView({ behavior: "smooth" });
+});

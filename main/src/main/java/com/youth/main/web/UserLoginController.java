@@ -1,43 +1,43 @@
 package com.youth.main.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.youth.main.mailservice.EmailDetails;
+import com.youth.main.mailservice.EmailService;
+import com.youth.main.model.UserModel;
+import com.youth.main.service.UserServiceImpl;
+
 @Controller
 public class UserLoginController {
-	
-//	@Autowired
-//	UserLoginDto userLoginDto;
-	
-//	@GetMapping("/user_login")
-//	public String userlogin(Model model) {
-//		UserLoginDto userLoginDto = new UserLoginDto();
-//		model.addAttribute("user",userLoginDto);
-//		return "user_login";
-//	}
-	
 
+	@Autowired 
+	private EmailService emailService;
+	
 	@GetMapping("/user_login")
 	public String userlogin() {
-		return "user_login";
-	}
-	/*@Autowired
-	   private BCryptPasswordEncoder passwordEncoder;
-	
-	@PostMapping
-	public String loginHandler(@ModelAttribute("user") UserLoginDto userLoginDto) {
-		System.out.println(userLoginDto.getEmail());
-		System.out.println(userLoginDto.getPassword());
-		
-		/*String email = userLoginDto.getEmail();
-		String password = passwordEncoder.encode(userLoginDto.getPassword());
-		
-		if("user".equals(email) && "user".equals(password)) {
-			return "index";
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth.getPrincipal() instanceof UserDetails) {
+			return "redirect:/index";
+		}else {
+					
+//			Email sending for checking purpose only..	               
+	        /*EmailDetails emailDetails = new EmailDetails();
+	        emailDetails.setRecipient("usecase22a@gmail.com");
+	        emailDetails.setSubject("Sign in successful.");
+	        emailDetails.setMsgBody("<h1 style='color:#3fa9f5;'>Youth Com.</h1>"
+	        		+ "<span style='color: #51cf66; font-weight: bold;'>Login Successful.</span>"
+	        		+ "Dear Sir/Madam, thanks for logging in.");
+	        emailDetails.setAttachment("./src/main/resources/static/images/base_logo02.png");
+	        
+	        emailService.sendMailWithHTMLOnly(emailDetails);*/
+			
+			return "user_login";
 		}
-		
-//		model.addAttribute("invalidCredentials", true);
-		return "user_login";
-	}*/
+	}
 
 }

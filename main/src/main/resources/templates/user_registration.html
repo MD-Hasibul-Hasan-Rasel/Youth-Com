@@ -39,7 +39,7 @@
   	
     <div class="registration_box gen_box_shadow">
       <div class="topportion_reg">
-        <a th:href="@{index}" class="base_logo_link">
+        <a th:href="@{/}" href="index.html" class="base_logo_link">
           <img
             src="images/base_logo02.png"
             alt="main-logo"
@@ -73,38 +73,38 @@
         <div class="validated" style="display: none">enter proper entities</div>
 
         <div class="input_text_box gen_box_shadow">
-          <input type="text" th:field="*{firstName}" class="form_firstname input_text" required/>
+          <input type="text" th:field="*{firstName}" name="firstname" class="form_firstname input_text" required/>
           <label class="form-label label_text" for=" ">First Name</label>
         </div>
         <div class="alert alert-danger registration_result" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
   		
 
         <div class="input_text_box gen_box_shadow">
-          <input type="text" th:field="*{lastName}" class="form_lastname input_text"  required/>
+          <input type="text" th:field="*{lastName}" name="lastname" class="form_lastname input_text"  required/>
           <label class="form-label label_text" for=" ">Last Name</label>
         </div>
         <div class="alert alert-danger registration_result" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
   	
         
         <div class="input_text_box gen_box_shadow">
-          <input type="text" th:field="*{username}" class="form_username input_text"  required/>
+          <input type="text" th:field="*{username}" name="username" class="form_username input_text"  required/>
           <label class="form-label label_text" for=" ">Username</label>
         </div>
 
         <div class="input_text_box gen_box_shadow">
-          <input type="email" th:field="*{email}" class="form_email input_text"  required/>
+          <input type="email" th:field="*{email}" name="email" class="form_email input_text"  required/>
           <label class="form-label label_text" for=" ">Email address</label>
         </div>
 
         <div class="input_text_box gen_box_shadow">
-          <input type="password" th:field="*{password}" class="form_password input_text"  required/>
+          <input type="password" th:field="*{password}" name="password" class="form_password input_text"  required/>
           <label class="form-label label_text" for=" ">Password</label>
         </div>
        	<div class="alert alert-danger registration_result" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
   	
 
         <div class="input_text_box gen_box_shadow">
-          <input type="password" th:field="*{retypepassword}" class="form_password_retype input_text"  required/>
+          <input type="password" th:field="*{retypepassword}" name="retypepassword" class="form_password_retype input_text"  required/>
           <label class="form-label label_text" for=" ">Retype Password</label>
         </div>
         

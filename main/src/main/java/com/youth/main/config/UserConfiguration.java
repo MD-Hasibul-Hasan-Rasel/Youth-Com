@@ -6,9 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security
     .authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security
@@ -34,14 +34,7 @@ import org.springframework.web.util.UrlPathHelper;
 public class UserConfiguration 
             extends WebSecurityConfigurerAdapter {
 
-//   @Lazy
-//   @Autowired
-//   private UserService userService;
-   
-//   @Autowired
-//   private DataSource dataSource;
-    
-  @Bean
+   @Bean
    public UserDetailsService userDetailsService() {
        return new UserServiceConfig();
    }
@@ -71,18 +64,16 @@ public class UserConfiguration
    @Override
    protected void configure(HttpSecurity http) throws Exception {
 	   
-	   http.authorizeRequests()
-	   .antMatchers("/*",
-			   "/user_registration**", "/css/**", "/js/**", "/images/**")
+	   /*http.authorizeRequests()
+	   .antMatchers("/*", "/user_registration**", "/css/**", "/js/**", "/images/**")
 	   .permitAll()
 	   .antMatchers("/user/**")
 	   .hasAuthority("USER")
 	   .and()
 	   .formLogin()
 	   .loginPage("/user_login")
-	   .loginProcessingUrl("/do-login")
+	   .loginProcessingUrl("/user_do_login")
 	   .defaultSuccessUrl("/index")
-//	   .defaultSuccessUrl("/user_login")
 	   .permitAll()
 	   .and()
 	   .logout()
@@ -90,7 +81,33 @@ public class UserConfiguration
 	   .clearAuthentication(true)
 	   .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
 	   .logoutSuccessUrl("/user_login?logout")
-	   .permitAll();
+	   .permitAll();*/
+
+
+	   http.
+        authorizeRequests()
+            .antMatchers("/css/**", "/js/**", "/images/**", "/svg/**", "/uploads/**").permitAll()
+            .antMatchers("/index").permitAll()
+            .antMatchers("/searchpage").permitAll()
+            .antMatchers("/login").permitAll()
+            .antMatchers("/registration").permitAll()
+            // .antMatchers("/landing").hasAnyAuthority("ADMIN","EMPLOYEE")
+            .antMatchers("/user/**").hasAuthority("USER")
+            .antMatchers("/admin/**").hasAuthority("ADMIN")
+            .antMatchers("/seller/**").hasAuthority("SELLER")
+            .anyRequest()
+            .authenticated().and()
+            .formLogin()
+            .loginPage("/login")
+			.loginProcessingUrl("/do_login")
+			.failureUrl("/login?error=true")
+            .defaultSuccessUrl("/")
+            .usernameParameter("username")
+            .passwordParameter("password")
+            .and().logout()
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .logoutSuccessUrl("/login").and().exceptionHandling()
+            .accessDeniedPage("/access-denied");
       
 	   /*http.authorizeRequests()
 	   	   .antMatchers("/user/**")

@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;500;600;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap");
+/* font-family imports:
+font-family: 'Encode Sans', sans-serif;
+font-family: 'Inter', sans-serif;
+font-family: 'JetBrains Mono', monospace; */
+
+body,
+html {
+  font-size: 10px;
+  font-family: "Inter", sans-serif !important;
+}
+
+.otpbox {
+  height: fit-content !important;
+  padding: 3rem;
+  width: 35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  font-size: 1.6rem;
+  font-weight: 500;
+  border-radius: 1rem;
+}
+
+form {
+  display: flex !important;
+  align-items: center;
+}
+
+.input_text_box {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+  align-items: center;
+}
+
+.submit_button_emailsend {
+  padding: 1rem 3rem;
+  width: fit-content !important;
+}

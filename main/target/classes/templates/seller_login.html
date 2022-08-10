@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youth com | SellerLogin</title>
+    <link rel="icon" type="image/x-icon" href="images/base_logo02.png" />
+
+    <!-- Font awesome CDN -->
+    <link
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/login.css" type="text/css" />
+    <link rel="stylesheet" href="css/login_responsive.css" type="text/css" />
+    <link rel="stylesheet" href="css/generics.css" type="text/css" />
+  </head>
+  <body>
+    <div class="login_box gen_box_shadow">
+      <section class="leftportion">
+        <a href="index.html" class="base_logo_link">
+          <img
+            src="images/base_logo02.png"
+            alt="main-logo"
+            height="60"
+            width="60"
+          />
+          <img src="images/name_site2.png" alt="youth_com." height="65" />
+        </a>
+
+        <div class="leftportionextraa">
+          <div class="imgdiv">
+            <img src="images/interior_office.png" alt="" />
+          </div>
+          <div class="extraalinks">
+            <p>Not a seller?</p>
+            <p>
+              Instead login as a
+              <a href="user_login.html" class="colorlightblue td_non5">User</a>
+            </p>
+            <p>or</p>
+            <p>
+              Seller
+              <a href="seller_registration.html" class="colorlightblue td_non5"
+                >Registration</a
+              >
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="rightportion">
+        <h1 class="user_login_heading">
+          Seller <span class="colorlightblue">Login</span>
+        </h1>
+
+        <div class="user_login_body">
+          <div class="welcome_text">
+            <h2>Hey! Welcome Back.</h2>
+            <p>Please login to your account</p>
+          </div>
+
+          <!-- form -->
+          <form>
+            <!-- Email input -->
+            <div class="input_text_box gen_box_shadow">
+              <input type="email" class="form_email input_text" />
+              <!-- placeholder="Email address" -->
+              <label class="form-label label_text" for=" ">Email address</label>
+            </div>
+
+            <div class="input_text_box gen_box_shadow">
+              <input type="password" class="form_password input_text" />
+              <!-- placeholder="Password" -->
+              <label class="form-label label_text" for=" ">Password</label>
+            </div>
+
+            <div class="forgot_pass">
+              <a href="#">Forgot password?</a>
+            </div>
+
+            <input
+              type="submit"
+              value="Log in"
+              class="submit_button gen_box_shadow"
+            />
+          </form>
+        </div>
+        <!-- floating items -->
+        <button class="exp_colp_button gen_box_shadow">
+          <i class="fa-solid fa-chevron-down"></i>
+        </button>
+      </section>
+    </div>
+
+    <!-- scripts -->
+
+    <script
+      src="https://kit.fontawesome.com/f7953d3d50.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="js/generics.js"></script>
+    <script src="js/login.js"></script>
+  </body>
+</html>

@@ -1,0 +1,9 @@
+.admin_main_button02 {
+  border-left: #3fa9f5 0.8rem solid;
+  background-color: rgba(63, 169, 245, 0.24);
+}
+
+.admin_main_button05 {
+  border-left: 0 !important;
+  background-color: transparent !important;
+}

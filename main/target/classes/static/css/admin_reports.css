@@ -1,0 +1,38 @@
+body,
+html {
+  font-size: 10px;
+}
+
+.admin_main_button03 {
+  border: none;
+  background-color: transparent;
+}
+
+.admin_main_button04 {
+  border-left: #3fa9f5 0.8rem solid;
+  background-color: rgba(63, 169, 245, 0.24);
+}
+
+.dashboard_main {
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+}
+
+.report_origin {
+  padding: 2rem;
+  font-size: 1.5rem;
+  border-radius: 1rem;
+}
+
+.report_origin img {
+  border-radius: 5rem;
+}
+
+.approve {
+  background-color: #3fa9f5;
+  border: #3fa9f5 1px solid;
+  width: 5rem;
+  border: none !important;
+}

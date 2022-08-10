@@ -17,10 +17,6 @@ import com.youth.main.model.Role;
 public class UserDetailsC implements UserDetails {
  
     private UserModel user;
-     
-//    public UserDetailsC(UserModel user) {
-//        this.user = user;
-//    }
  
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -61,9 +57,5 @@ public class UserDetailsC implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-     
-//    public String getFullName() {
-//        return user.getFirstName() + " " + user.getLastName();
-//    }
- 
+    
 }

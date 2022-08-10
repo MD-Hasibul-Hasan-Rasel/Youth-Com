@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youth com | UserSignup</title>
+    <link rel="icon" type="image/x-icon" href="images/base_logo02.png" />
+    <!-- Latest compiled and minified CSS Bootstrap-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font awesome CDN -->
+    <link
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/login.css" type="text/css" />
+    <link rel="stylesheet" href="css/login_responsive.css" type="text/css" />
+    <link rel="stylesheet" href="css/generics.css" type="text/css" />
+    <link rel="stylesheet" href="css/registration.css" type="text/css" />
+  </head>
+  <body>
+  	
+  	<!-- Thymeleaf included -->
+  	<div th:if="${session.message}" class="registration_result">
+  		<div class="alert alert-info" th:text="${session.message}"></div>
+  	</div>
+  	
+  	
+  	
+  	<!-- <div th:if="${param.success}">
+  		<div class="alert alert-info">Registration Successful</div>
+  	</div>-->
+  	
+    <div class="registration_box gen_box_shadow">
+      <div class="topportion_reg">
+        <a th:href="@{/}" href="index.html" class="base_logo_link">
+          <img
+            src="images/base_logo02.png"
+            alt="main-logo"
+            height="45"
+            width="45"
+          />
+          <img src="images/name_site2.png" alt="youth_com." height="50" />
+        </a>
+        <h1 class="user_login_heading">
+          User <span class="colorlightblue">Registration</span>
+        </h1>
+      </div>
+
+      <div class="leftportionextraa">
+        <div class="extraalinks">
+          <p>
+            Already have an account! Login as a
+            <a th:href="@{/user_login}"  href="user_login.html" class="colorlightblue td_non5">User</a>
+          </p>
+          <p>or</p>
+          <p>
+            Instead login as a
+            <a th:href="@{/seller_login}"  href="seller_login.html" class="colorlightblue td_non5"
+              >Seller</a
+            >
+          </p>
+        </div>
+      </div>
+
+      <form th:action="@{/user_registration}" th:object="${user}" method="POST" enctype="multipart/form-data">
+        <div class="validated" style="display: none">enter proper entities</div>
+
+        <div class="input_text_box gen_box_shadow">
+          <input type="text" th:field="*{firstName}" name="firstname" class="form_firstname input_text" required/>
+          <label class="form-label label_text" for=" ">First Name</label>
+        </div>
+        <div class="alert alert-danger registration_result" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
+  		
+
+        <div class="input_text_box gen_box_shadow">
+          <input type="text" th:field="*{lastName}" name="lastname" class="form_lastname input_text"  required/>
+          <label class="form-label label_text" for=" ">Last Name</label>
+        </div>
+        <div class="alert alert-danger registration_result" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+  	
+        
+        <div class="input_text_box gen_box_shadow">
+          <input type="text" th:field="*{username}" name="username" class="form_username input_text"  required/>
+          <label class="form-label label_text" for=" ">Username</label>
+        </div>
+
+        <div class="input_text_box gen_box_shadow">
+          <input type="email" th:field="*{email}" name="email" class="form_email input_text"  required/>
+          <label class="form-label label_text" for=" ">Email address</label>
+        </div>
+
+        <div class="input_text_box gen_box_shadow">
+          <input type="password" th:field="*{password}" name="password" class="form_password input_text"  required/>
+          <label class="form-label label_text" for=" ">Password</label>
+        </div>
+       	<div class="alert alert-danger registration_result" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+  	
+
+        <div class="input_text_box gen_box_shadow">
+          <input type="password" th:field="*{retypepassword}" name="retypepassword" class="form_password_retype input_text"  required/>
+          <label class="form-label label_text" for=" ">Retype Password</label>
+        </div>
+        
+        <!--<div class="input_text_box gen_box_shadow">
+          <input type="number" th:field="*{phone}" class="form_lastname input_text"  required/>
+          <label class="form-label label_text" for=" ">Phone No.</label>
+        </div>-->
+
+        
+        <div class="file_box">
+          <label class="file_label" for=" ">Please upload your image </label
+          ><img
+            id="target"
+            height="100"
+            width="100"
+            class="uploaded_image gen_box_shadow"
+          />
+          <div class="file_upload_box gen_box_shadow">
+            <input
+              type="file"
+              class="form_password_retype input_text gen_box_shadow image_file_upload"
+              accept="image/*"
+              name="image"
+              id="file"
+              onchange="putImage()"
+            />
+            <img src="svg/upload_image.svg" alt="image uplaod" />
+          </div>
+        </div>
+        
+
+        <input
+          type="submit"
+          value="Register"
+          class="submit_button gen_box_shadow"
+        />
+      </form>
+    </div>
+	
+	<!-- CDN's -->
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://kit.fontawesome.com/f7953d3d50.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/generics.js"></script>
+  </body>
+</html>

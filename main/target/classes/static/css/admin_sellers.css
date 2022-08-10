@@ -1,0 +1,222 @@
+.email_modal_overlay {
+  height: 100vh;
+  width: 100%;
+  background-color: #fee2b3;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+
+  visibility: hidden;
+}
+
+.email_mainbox {
+  height: fit-content;
+  width: fit-content;
+  padding: 3rem;
+  background-color: #e6e8ee;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  z-index: 99;
+  border-radius: 1rem;
+}
+
+.exit_emailbox {
+  background-color: transparent;
+  border: none !important;
+  margin-bottom: 3rem;
+}
+
+.exit_emailbox img {
+  height: 3rem;
+  width: 3rem;
+}
+
+.form_textbox_field {
+  height: 15rem !important;
+  width: 50rem !important;
+}
+
+.form_textbox_field .input_text {
+  font-size: 1.5rem !important;
+  padding: 1rem;
+}
+
+.submit_button_emailsend {
+  width: 10rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.admin_main_button01 {
+  border: none;
+  background-color: transparent;
+}
+.admin_main_button03 {
+  border-left: #3fa9f5 0.8rem solid;
+  background-color: rgba(63, 169, 245, 0.24);
+}
+
+main {
+  width: 120rem !important;
+  padding: 0 !important;
+}
+
+.admin_main {
+  overflow-y: hidden !important;
+  padding: 1rem !important;
+}
+
+.dashboard_main {
+  overflow-y: scroll;
+}
+
+.seller_list h1 {
+  margin: 1rem 1rem 3rem 1rem;
+}
+
+.seller_request_container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.seller_data {
+  margin: 1rem;
+  padding: 2rem 3rem;
+  font-size: 1.7rem;
+  width: fit-content;
+  border-radius: 1rem;
+}
+
+.seller_data img {
+  border-radius: 5rem;
+}
+
+.seller_data p {
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 3rem;
+}
+
+.seller_data p span {
+  font-weight: 400;
+}
+
+.seller_approval_decision_buttons {
+  display: flex;
+  align-items: center;
+  column-gap: 2rem;
+  margin: 3rem 0;
+}
+
+.seller_approval_decision_buttons .button {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.approve img {
+  height: 3rem;
+}
+
+.reject img {
+  height: 2rem;
+}
+
+.approve,
+.reject {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+  cursor: pointer;
+}
+
+.approve {
+  border: 1px solid #40c057;
+}
+
+.approve:hover {
+  border: 1px solid #4de268;
+}
+
+.reject {
+  border: 1px solid #f03e3e;
+}
+
+.reject:hover {
+  border: 1px solid #ff7575;
+}
+
+.approved_sellers_header {
+  margin-top: 5rem !important;
+}
+
+.approved_sellers {
+  font-size: 1.5rem;
+}
+
+.approved_sellers table th {
+  text-align: left;
+}
+
+.approved_sellers table {
+  border-collapse: separate;
+  border-spacing: 1rem;
+}
+
+.email_seller,
+.remove_seller {
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  color: #fff;
+  margin: 0 0.5rem 0 0;
+}
+
+.email_seller {
+  background-color: #3fa9f5;
+  cursor: pointer;
+}
+
+.email_seller:hover {
+  background-color: #62beff;
+}
+
+.remove_seller {
+  background-color: #f03e3e;
+  cursor: pointer;
+}
+
+.remove_seller:hover {
+  background-color: #ff7575;
+}
+
+@media (max-width: 850px) {
+  body,
+  html {
+    font-size: 8px !important;
+  }
+
+  main {
+    width: 100% !important;
+  }
+
+  .seller_request_container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .form_textbox_field {
+    height: 15rem !important;
+    width: 30rem !important;
+  }
+}

@@ -1,0 +1,27 @@
+@media (max-width: 1200px) {
+  .comment_text_field {
+    z-index: auto;
+  }
+
+  .forum_main_heading {
+    display: none;
+  }
+
+  .category_posts {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .category {
+    display: none;
+  }
+
+  .posts {
+    width: 100%;
+    grid-column: 1/-1;
+  }
+
+  .post {
+    margin: 1rem 0 10rem 0 !important;
+  }
+}

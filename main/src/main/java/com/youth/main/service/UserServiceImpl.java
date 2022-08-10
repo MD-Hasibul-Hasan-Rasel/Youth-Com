@@ -1,22 +1,13 @@
 package com.youth.main.service;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.youth.main.model.Role;
+import com.youth.main.controller.dto.UserRegistrationDto;
 import com.youth.main.model.UserModel;
 import com.youth.main.repository.RoleRepository;
 import com.youth.main.repository.UserRepository;
-import com.youth.main.web.dto.UserRegistrationDto;
 
 @Service
 public class UserServiceImpl implements UserService{
@@ -41,7 +32,8 @@ public class UserServiceImpl implements UserService{
 				registrationDto.getEmail(),
 				registrationDto.getPassword(),
 				registrationDto.getPhoto(),
-				Arrays.asList(roleRepository.findByName("USER")));
+				Arrays.asList(roleRepository.findByName(registrationDto.getUserRole())));
+				// Arrays.asList(roleRepository.findByName("USER")));
 		
 		return userRepository.save(userModel);
 	}

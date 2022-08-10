@@ -1,0 +1,185 @@
+a,
+input,
+button {
+  cursor: pointer;
+}
+
+.topbar {
+  height: 8rem;
+}
+
+.category_posts {
+  grid-template-columns: repeat(12, 1fr);
+  height: calc(100vh - 8rem);
+}
+
+nav a {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.category_posts .category h2 {
+  text-align: left;
+  padding-left: 2rem;
+}
+
+.sort {
+  /* height: 30%; */
+  margin-bottom: 2rem;
+}
+
+.sort a {
+  height: 4rem !important;
+}
+
+.search_box_container {
+  grid-column: 3/-1;
+  margin: 0;
+
+  overflow-y: scroll;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: max-content;
+  row-gap: 5rem;
+  padding: 3rem 0;
+}
+
+.card {
+  display: block;
+  height: 30rem;
+  width: 22rem;
+  text-decoration: none;
+  overflow: hidden;
+  border-radius: 1rem;
+  color: #212529;
+  margin: 0 1rem;
+  justify-self: center;
+
+  font-size: 0.8rem;
+}
+
+.card:hover img {
+  transform: scale(1.1);
+}
+
+.img {
+  width: 100%;
+  height: 45%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.img img {
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.product_title {
+  height: 30%;
+  padding: 0 1rem;
+  margin: 1rem 0;
+  font-weight: 500;
+  overflow: hidden;
+}
+
+.price {
+  padding: 0 1rem;
+  font-size: 1.5rem;
+}
+
+.card_price {
+  font-size: 2.5rem;
+  color: #3fa9f5;
+}
+
+@media (max-width: 1285px) {
+  .category_posts {
+    width: 100%;
+  }
+
+  .search_box_container {
+    /* grid-template-columns: repeat(3, 1fr); */
+    grid-column: 1/-1;
+  }
+
+  .main_search_box {
+    /* display: block !important; */
+    display: flex !important;
+    margin: 0 2rem;
+  }
+
+  .main_search_box button {
+    width: 8rem;
+  }
+
+  #searchtext {
+    width: 100% !important;
+  }
+
+  .navigation {
+    overflow-y: scroll !important;
+  }
+}
+
+@media (max-width: 1000px) {
+  .category_posts {
+    grid-template-columns: 1fr !important;
+    width: 100%;
+  }
+
+  .search_box_container {
+    grid-template-columns: repeat(3, 1fr);
+    grid-column: 1/-1;
+  }
+
+  .user_profile {
+    display: none;
+  }
+
+  .user_profile_nav {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5rem !important;
+  }
+
+  .user_profile_nav img {
+    height: 5rem;
+    width: 5rem;
+  }
+
+  .user_profile_nav span {
+    font-size: 2rem;
+  }
+
+  .navigation h2 {
+    text-align: left !important;
+    padding: 0 2rem !important;
+  }
+
+  .base_logo_link img {
+    height: 5rem;
+  }
+}
+
+@media (max-width: 730px) {
+  body,
+  html {
+    font-size: 8px !important;
+  }
+
+  main {
+    padding: 0 1rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .search_box_container {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column: 1/-1;
+  }
+
+  .card {
+    width: 20rem;
+  }
+}

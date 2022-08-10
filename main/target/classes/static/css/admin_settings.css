@@ -1,0 +1,32 @@
+.admin_main_button05 {
+  border: none !important;
+  background-color: transparent !important;
+}
+
+.admin_main_button06 {
+  border-left: #3fa9f5 0.8rem solid !important;
+  background-color: rgba(63, 169, 245, 0.24) !important;
+}
+
+.dashboard_main {
+  margin-left: 0 !important;
+}
+
+.user_details {
+  gap: 2rem;
+}
+
+.user_image {
+  height: 25rem !important;
+  width: 25rem !important;
+}
+
+.edit_profile_btn {
+  background-color: #3fa9f5;
+  transition: all 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+  height: 5rem !important;
+}
+
+.edit_profile_btn:hover {
+  background-color: #67bcf8 !important;
+}

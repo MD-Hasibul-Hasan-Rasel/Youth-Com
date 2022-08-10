@@ -1,0 +1,5 @@
+.seller_approval_decision_buttons form {
+  display: flex !important;
+  flex-direction: row;
+  align-items: center;
+}

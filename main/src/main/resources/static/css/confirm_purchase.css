@@ -1,0 +1,29 @@
+.submit_button_emailsend {
+  margin: 0 auto;
+}
+
+.thank_you_text {
+  display: inline-block;
+}
+
+.edit_profile_btn {
+  text-decoration: none;
+  padding: 1rem 3rem;
+  display: block;
+}
+
+.email_mainbox {
+  font-size: 2rem;
+}
+
+.user_image {
+  border-radius: 0;
+}
+
+.user_details {
+  align-items: flex-start;
+}
+
+form {
+  align-items: flex-start;
+}

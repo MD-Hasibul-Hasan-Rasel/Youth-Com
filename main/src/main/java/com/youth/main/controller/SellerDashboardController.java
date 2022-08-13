@@ -18,24 +18,20 @@ import com.youth.main.repository.UserRepository;
 @Controller
 public class SellerDashboardController {
 	
-	/*@GetMapping
-	public String RegistrationForm(Model model) {
-		return "seller_dashboard";
-	}*/
-	
 	@Autowired
 	private UserRepository userRepository;
 
 	@GetMapping(value={"/seller/seller_dashboard"})
-	public String RegistrationForm(@ModelAttribute("seller") @Valid UserRegistrationDto userDto, BindingResult result, Model model) {
+	public String sellerDashboard(@ModelAttribute("seller") @Valid UserRegistrationDto userDto, BindingResult result, Model model) {
 
 		try {
 	    Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
 	    String username = loggedInUser.getName(); 
 
-	    
 	    UserModel getActualUsername = userRepository.findByUsername(username);
 	    String originalUsername = getActualUsername.getUsername();
+
+
 	    model.addAttribute("username", originalUsername);
 	    
 		}catch(Exception e) {
@@ -45,4 +41,22 @@ public class SellerDashboardController {
 		return "seller_dashboard"; 
 		
 	}
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

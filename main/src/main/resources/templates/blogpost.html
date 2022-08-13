@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youth com | Posts</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/base_logo02.png}" />
+    <link rel="stylesheet" th:href="@{/css/generics.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/blogpost.css}" type="text/css" />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/blogpost_responsive.css}"
+      type="text/css"
+    />
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css" />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/nav_mobile_slider.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/main_responsive_mobile.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/main_responsive_tab_ss.css}"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <!-- floating portion -->
+    <div class="overlay">
+      <div class="navigation_mobile_slider">
+        <button class="exit_mobile_navigation_slider">
+          <img th:src="@{/svg/cross.svg}" alt="exit" />
+        </button>
+        <nav class="navigation">
+          <h1 class="forum_heading forum_heading_nav">Blogspot</h1>
+          <h2>Categ<span>ories</span></h2>
+          <a th:href="@{/user/blogpost(category='Job Posts')}"
+          	 class="category_button01">
+            <span>Job Posts</span>
+          </a>
+          <a th:href="@{/user/blogpost(category='Product Review')}" class="category_button02">
+            <span>Product Review</span>
+          </a>
+          <a th:href="@{/user/blogpost(category='Event & Seminar Info')}" class="category_button03">
+            <span>Event & Seminar Info</span>
+          </a>
+          <a th:href="@{/user/blogpost(category='Contest Alert')}" class="category_button04">
+            <span>Contest Alert</span>
+          </a>
+          <a th:href="@{/user/blogpost(category='Experience Sharing')}" class="category_button05">
+            <span>Experience Sharing</span>
+          </a>
+          <a th:href="@{/user/blogpost(category='Case Studies')}" class="category_button06">
+            <span>Case Studies</span>
+          </a>
+        </nav>
+
+        <form
+          th:action="@{/user/blogpost}"
+          method="GET"
+          class="main_search_box main_search_box_nav gen_box_shadow"
+        >
+          <input
+            type="text"
+            name="keyword"
+            th:value="${keyword}"
+            placeholder="Search for posts.."
+            id="searchtext"
+            class="searchtext_nav"
+          />
+          <button type="submit">GO</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Header portion -->
+    <header>
+      <div class="topbar_box">
+        <div class="topbar header_primary_section">
+          <a th:href="@{/index}" class="base_logo_link">
+            <img
+              th:src="@{/images/base_logo02.png}"
+              alt="main-logo"
+              height="40"
+              width="40"
+            />
+            <img
+              th:src="@{/images/name_site2.png}"
+              alt="youth_com."
+              height="45"
+            />
+          </a>
+
+          <form
+            th:action="@{/user/blogpost}"
+            method="GET"
+            class="main_search_box gen_box_shadow"
+          >
+            <input
+              type="text"
+              name="keyword"
+              th:value="${keyword}"
+              placeholder="Search for posts.."
+              id="searchtext"
+            />
+            <button type="submit">GO</button>
+          </form>
+
+          <div class="user_essn" style="gap: 2rem">
+            <div class="user_profile gen_box_shadow">
+              <div sec:authorize="isAuthenticated()">
+                <img
+                  class="user_profile_img"
+                  th:src="@{'/uploads/' + ${username} + '/'
+                	+ ${username} + '.jpg'}"
+                  alt="user_profile"
+                />
+              </div>
+
+              <div sec:authorize="!isAuthenticated()">
+                <img
+                  class="user_profile_img"
+                  th:src="@{/images/anonymous.png}"
+                  alt="user_profile"
+                />
+              </div>
+
+              <span
+                sec:authentication="principal.username"
+                sec:authorize="isAuthenticated()"
+              ></span>
+              <span sec:authorize="!isAuthenticated()">User</span>
+
+              <div class="profile_logout">
+                <!-- <div th:if="${param.logout}">-->
+                <div sec:authorize="isAuthenticated()">
+                  <a class="view_profile" th:href="@{/user/user_profile}"
+                    >View profile</a
+                  >
+                  <a class="logout" th:href="@{/logout}">Logout</a>
+                </div>
+                <div sec:authorize="!isAuthenticated()">
+                  <a class="login" th:href="@{/login}">Login</a>
+                </div>
+              </div>
+            </div>
+            <h1 class="forum_heading forum_main_heading">
+              Blogspot<span></span>
+            </h1>
+            <div class="bell_cart">
+              <button class="menu_button">
+                <img th:src="@{/svg/menu_hamburgar.svg}" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="category_posts">
+        <div class="category gen_box_shadow">
+          <h2>Categ<span>ories</span></h2>
+          <a th:href="@{/user/blogpost(category='Job Posts')}" class="category_button01">
+            <span>Job Posts</span>
+          </a>
+          <a th:href="@{/user/blogpost(category='Product Review')}" class="category_button02">
+            <span>Product Review</span>
+          </a>
+          <a th:href="@{/user/blogpost(category='Event & Seminar Info')}" class="category_button03">
+            <span>Event & Seminar Info</span>
+          </a>
+          <a th:href="@{/user/blogpost(category='Contest Alert')}" class="category_button04">
+            <span>Contest Alert</span>
+          </a>
+          <a th:href="@{/user/blogpost(category='Experience Sharing')}" class="category_button05">
+            <span>Experience Sharing</span>
+          </a>
+          <a th:href="@{/user/blogpost(category='Case Studies')}" class="category_button06">
+            <span>Case Studies</span>
+          </a>
+        </div>
+        <div class="posts">
+          <div class="post" th:each="l : ${list}">
+            <div>
+              <img
+                th:src="@{'/uploads/' + ${l.username} + '/postdata/' + ${l.postname} + '/'
+               				 + ${l.postname} + '.jpg'}"
+                alt="post related image"
+                height="150"
+              />
+              <div class="tags">
+                <div>
+                  <img
+                    th:src="@{/svg/tag.svg}"
+                    alt=""
+                    class="tag_img"
+                    height="15"
+                  />
+                  <span class="tag" th:text="${l.category}"></span>
+                </div>
+
+                <div>
+                  <img
+                    th:src="@{/svg/author.svg}"
+                    alt=""
+                    class="author_img"
+                    height="15"
+                  />
+                  <span class="author" th:text="${l.username}"></span>
+                </div>
+
+                <div>
+                  <img
+                    th:src="@{/svg/date.svg}"
+                    alt=""
+                    class="date_img"
+                    height="15"
+                  />
+                  <span class="date" th:text="${l.date}"></span>
+                </div>
+              </div>
+
+              <h1 class="post_heading" th:text="${l.postname}"></h1>
+              <p class="post_detail" th:text="${l.description}"></p>
+            </div>
+            <div class="all_comments gen_box_shadow">
+              
+              <button class="collapsible">All Comments</button>
+              <div class="content">
+                </label>
+                <div class="tab-content comment_flex">
+                  <div class="comment_box">
+                    <div class="commentator_details">
+                      <h2 class="commentator_name">Hasibul</h2>
+                      <span class="time">09 JUN, 2022</span>
+                    </div>
+                    <p class="commentator_comment">
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                      Aut, sequi.
+                    </p>
+                  </div>
+
+                  <div class="comment_box">
+                    <div class="commentator_details">
+                      <h2 class="commentator_name">Hasibul</h2>
+                      <span class="time">09 JUN, 2022</span>
+                    </div>
+                    <p class="commentator_comment">
+                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                      Aut, sequi.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="like_comment gen_box_shadow">
+              <!-- <button class="thumbs_up_button" title="Like this post">
+                <img
+                  th:src="@{/svg/thumbs_up_gray.svg}"
+                  alt=""
+                  height="25"
+                  class="thumbs_up_image"
+                />
+              </button>
+              <span class="like_count">20</span> -->
+              <form action="" class="comment_form">
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  placeholder="write a comment.."
+                  class="input_text comment_text_field"
+                />
+                <input type="submit" value="comment" class="comment_button" />
+              </form>
+            </div>
+          </div>
+
+          <div
+            class="gap_maker"
+            style="height: 15rem; width: 100%; background: transparent;
+            font-size: 4rem; color: #D3D4D9;
+            display: flex; align-items: center; justify-content: center;"
+            th:if="${size==0}"
+          >No posts found</div>
+          
+          <div
+            class="gap_maker"
+            style="height: 15rem; width: 100%; background: transparent"
+            th:if="${size>0}"
+          ></div>
+          
+        </div>
+      </div>
+    </main>
+    <script th:src="@{/js/blogpost.js}"></script>
+    <!-- JavaScript link -->
+    <script th:src="@{/js/main_script.js}" type="text/javascript"></script>
+    <script
+      th:src="@{/js/nav_mobile_slider.js}"
+      type="text/javascript"
+    ></script>
+    <!-- CDN's -->
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://kit.fontawesome.com/f7953d3d50.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

@@ -9,7 +9,7 @@
   }
 
   .admin_main_sidebar {
-    display: none;
+    display: none !important;
   }
 
   .admin_main {
@@ -19,7 +19,7 @@
   }
 
   .dashboard_main {
-    grid-column: 1/-1;
+    grid-column: 1/-1 !important;
     margin: 0;
     padding: 1rem;
   }

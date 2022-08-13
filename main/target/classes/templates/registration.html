@@ -96,6 +96,7 @@
             id="category_select"
             class="input_text"
             th:field="*{userRole}"
+            required
           >
             <option value="USER" selected>USER</option>
             <option value="SELLER">SELLER</option>
@@ -199,6 +200,7 @@
               name="image"
               id="file"
               onchange="putImage()"
+              required
             />
             <img th:src="@{/svg/upload_image.svg}" alt="image uplaod" />
           </div>

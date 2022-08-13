@@ -90,6 +90,8 @@
           User<span class="colorlightblue">Profile</span>
         </h1>
       </div>
+      
+      
       <div class="user_details" th:each="user : ${userdata}">
       <!-- <div class="user_details"> -->
         <img
@@ -103,11 +105,6 @@
             ></span
           >
         </p>
-        <!-- <p class="phone">
-          Phone no: &nbsp;<span class="phone_value colorlightblue" th:text="${user.phone}"
-            ></span
-          >
-        </p> -->
         <p class="email">
           Email: &nbsp;<span class="email_value colorlightblue" th:text="${user.email}">
             </span
@@ -116,6 +113,8 @@
 
         <button class="edit_profile_btn email_seller">Edit profile</button>
       </div>
+      
+      
       <div class="user_profile_recents">
         <h1 class="user_profile_recents_h1">Recent Activities</h1>
         <div class="recent_data">

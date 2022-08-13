@@ -37,3 +37,20 @@ thumbs_up_button.forEach((thumbs_up_btn) =>
     }
   })
 );
+
+// collapsible
+var coll = document.getElementsByClassName("collapsible");
+var f;
+
+for (f = 0; f < coll.length; f++) {
+  coll[f].addEventListener("click", function () {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight) {
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+      content.style.height = content.scrollHeight + "px";
+    }
+  });
+}

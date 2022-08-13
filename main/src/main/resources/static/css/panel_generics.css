@@ -39,22 +39,22 @@ html {
 }
 
 .admin_main a {
-  display: block;
-  height: 7rem;
-  transition-duration: 0.5s;
-  display: flex;
-  align-items: center;
-  padding-left: 4rem;
-  text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: #343a40;
+  display: block !important;
+  height: 70px  !important;
+  transition-duration: 0.5s !important;
+  display: flex !important;
+  align-items: center !important;
+  padding-left: 4rem !important;
+  text-decoration: none !important;
+  font-size: 1.5rem !important;
+  font-weight: 500 !important;
+  color: #343a40 !important;
 }
 
 .admin_main a img {
-  height: 2rem;
-  width: 2rem;
-  margin-right: 1rem;
+  height: 2rem !important;
+  width: 2rem !important; 
+  margin-right: 1rem !important;
 }
 
 .admin_main a svg {

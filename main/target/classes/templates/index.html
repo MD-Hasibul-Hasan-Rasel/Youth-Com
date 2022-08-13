@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Youth com | Home</title>
-    <link rel="icon" type="image/x-icon" th:href="@{images/base_logo02.png}" />
+    <link rel="icon" type="image/x-icon" th:href="@{/images/base_logo02.png}" />
     <!-- Latest compiled and minified CSS Bootstrap-->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
@@ -132,21 +132,18 @@
             <span>Dgt. Service</span>
           </a>
         </nav>
-
-        <form
-          action=""
-          method=""
-          class="main_search_box main_search_box_nav gen_box_shadow"
-        >
-          <input
-            type="text"
-            name="searchtext"
-            placeholder="Search for something.."
-            id="searchtext"
-            class="searchtext_nav"
-          />
-          <button type="submit">GO</button>
-        </form>
+        
+        <form th:action="@{/searchpage}" method="POST" class="main_search_box gen_box_shadow">
+            <input
+              type="text"
+              name="keyword" 
+              th:value="${keyword}"
+              placeholder="Search for products.."
+              id="searchtext"
+              class="searchtext_nav"
+            />
+            <button type="submit">GO</button>
+          </form>
 
         <div class="bell_cart_nav">
           <button class="notification_button gen_box_shadow">
@@ -178,19 +175,20 @@
               height="45"
             />
           </a>
-          <form
-            action=""
-            method=""
-            class="main_search_box homepage_search_form gen_box_shadow"
-          >
+          
+          <form th:action="@{/searchpage}" method="GET" class="main_search_box gen_box_shadow"
+          style="flex-direction: row;">
             <input
               type="text"
-              name="searchtext"
-              placeholder="Search for something.."
+              name="keyword" 
+              th:value="${keyword}"
+              placeholder="Search for products.."
               id="searchtext"
             />
             <button type="submit">GO</button>
           </form>
+          
+          
           <div class="user_essn">
             <div class="user_profile gen_box_shadow">
               <!--  
@@ -788,7 +786,7 @@
             <h2>Contacts</h2>
             <a href="" class="footer_main_a">Get Support</a>
             <a th:href="@{/user/user_profile}" class="footer_main_a">Profile</a>
-            <a href="" class="footer_main_a">Blogspot</a>
+            <a th:href="@{/user/blogpost}" class="footer_main_a">Blogspot</a>
             <a href="" class="footer_main_a">Categories</a>
             <a href="" class="footer_main_a">Contact</a>
           </div>

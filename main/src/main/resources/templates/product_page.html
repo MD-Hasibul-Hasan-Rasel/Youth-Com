@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youth com | Product</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/base_logo02.png}" />
+    <!-- Latest compiled and minified CSS Bootstrap-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font awesome CDN -->
+    <link
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/generics.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/product_page.css}" type="text/css" />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/nav_mobile_slider.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/product_page_responsive.css}"
+      type="text/css"
+    />
+    <!---->
+    <link
+      rel="stylesheet"
+      th:href="@{/css/main_responsive_mobile.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/main_responsive_tab_ss.css}"
+      type="text/css"
+    />
+  </head>
+  <body>
+  
+  	<!-- Thymeleaf included -->
+    <div th:if="${cartadd}" class="registration_result">
+      <div class="alert alert-info" th:text="${cartadd}"></div>
+    </div>
+    
+    
+    <!-- Floating contents -->
+    <div class="cart_popup_modal">
+      <div class="cart_main_box">
+        <button class="exit_cart">
+          <img th:src="@{/svg/cross.svg}" alt="cross" height="20" width="20" />
+        </button>
+        <h2 class="your_cart">Your Cart</h2>
+        <div class="cart_items">
+          <div class="cart_item" th:each="l : ${listCart}">
+            <div class="cart_img_h2" style="flex-direction: column;">
+              <img
+                th:src="@{'/uploads/' + ${l.sellername} + '/' + ${l.productno} + '/'
+               				 + ${l.productno} + '.jpg'}"
+                alt="red"
+                height="50"
+                width="60"
+              />
+              <h2 th:text="${l.productname}"></h2><br/>
+              <h4 th:text="${l.username}"></h4><br/>
+            </div>
+
+            
+            <a th:href="@{/deleteCartproduct(cartId=${l.id})}" class="btn btn-danger cart_item_discard">Discard</a>
+          </div>
+        </div>
+        <a href="" class="checkout">Checkout</a>
+      </div>
+    </div>
+
+    <!-- notification popup modal -->
+    <div class="notification_popup_modal">
+      <div class="notification_main_box">
+        <button class="exit_notification">
+          <img th:src="@{/svg/cross.svg}" alt="cross" height="20" width="20" />
+        </button>
+        <h2 class="your_notification">Your notifications</h2>
+        <div class="notification_items">
+          <div class="notification_item">
+            <div class="notification_img_h2">
+                           
+              <div sec:authorize="isAuthenticated()">
+              	<h2 class="notification_item_h2">
+                	<div class="not_text">Hello There! Welcome</div>
+              	</h2>
+              </div>
+              <div sec:authorize="!isAuthenticated()">
+              	<h2 class="notification_item_h2" style="color: #777; text-align: center;">
+                	No notification available!
+              	</h2>
+              </div>
+              
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="cart_popup_modal nav_menu_slider">
+      <div class="cart_main_box">
+        <button class="exit_cart">&Cross;</button>
+        <h2>Your Cart</h2>
+      </div>
+    </div> -->
+
+    <div class="overlay">
+      <div class="navigation_mobile_slider">
+        <button class="exit_mobile_navigation_slider">
+          <img th:src="@{/svg/cross.svg}" alt="exit" />
+        </button>
+        
+
+        <div class="bell_cart_nav">
+          <button class="notification_button gen_box_shadow" sec:authorize="isAuthenticated()">
+                <span class="notification_count">1</span>
+                <i class="fa-solid fa-bell"></i>
+              </button>
+              
+              <button class="notification_button gen_box_shadow" sec:authorize="!isAuthenticated()">
+                <span class="notification_count">0</span>
+                <i class="fa-solid fa-bell"></i>                
+          </button>
+          <button class="cart_button gen_box_shadow">
+            <span th:text="${count}"></span>
+            <i class="fa-solid fa-shopping-cart"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Header portion -->
+    <header>
+      <div class="topbar_box">
+        <div class="topbar header_primary_section">
+          <a th:href="@{/index}" class="base_logo_link">
+            <img
+              th:src="@{/images/base_logo02.png}"
+              alt="main-logo"
+              height="40"
+              width="40"
+            />
+            <img
+              th:src="@{/images/name_site2.png}"
+              alt="youth_com."
+              height="45"
+            />
+          </a>
+
+          <div class="user_essn">
+            <div class="user_profile gen_box_shadow">
+              <div sec:authorize="isAuthenticated()">
+                <img
+                  class="user_profile_img"
+                  th:src="@{'/uploads/' + ${username} + '/'
+                	+ ${username} + '.jpg'}"
+                  alt="user_profile"
+                />
+              </div>
+
+              <div sec:authorize="!isAuthenticated()">
+                <img
+                  class="user_profile_img"
+                  th:src="@{/images/anonymous.png}"
+                  alt="user_profile"
+                />
+              </div>
+              <span
+                sec:authentication="principal.username"
+                sec:authorize="isAuthenticated()"
+              ></span>
+              <span sec:authorize="!isAuthenticated()">User</span>
+
+              <div class="profile_logout">
+                <!-- <div th:if="${param.logout}">-->
+                <div sec:authorize="isAuthenticated()">
+                <!--   <a class="view_profile" th:href="@{/#}">View profile</a> -->
+                  <a class="logout" th:href="@{/logout}">Logout</a>
+                </div>
+                <div sec:authorize="!isAuthenticated()">
+                  <a class="login" th:href="@{/user_login}">Login</a>
+                </div>
+              </div>
+            </div>
+            <div class="bell_cart">
+              <button class="notification_button" sec:authorize="isAuthenticated()">
+                <span class="notification_count">1</span>
+                <i class="fa-solid fa-bell"></i>
+              </button>
+              
+              <button class="notification_button" sec:authorize="!isAuthenticated()">
+                <span class="notification_count">0</span>
+                <i class="fa-solid fa-bell"></i>                
+          	  </button>
+              <button class="cart_button">
+                <span th:text="${count}"></span>
+                <i class="fa-solid fa-shopping-cart"></i>
+              </button>
+              <button class="menu_button">
+                <img th:src="@{/svg/menu_hamburgar.svg}" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main >
+      <div class="slider_productname">
+        <div class="productslider gen_box_shadow" style="border: #D3D4D9 2px solid;
+        												border-radius: 1rem;" th:each="l : ${list}">
+          <img
+            th:src="@{'/uploads/' + ${l.username} + '/' + ${l.productno} + '/'
+               				 + ${l.productno} + '.jpg'}"
+            alt="red dragon headphone"
+            class="img1"
+          />
+        </div>
+        <div class="productname_buy" th:each="l : ${list}">
+          <h1 th:text="${l.productname}"></h1>
+          <div class="price_product">
+            Price. <span class="price_product_main" th:text="${l.price}"></span>TK
+          </div>
+          <div class="buttons">
+            <a class="buynow" th:href="@{/user/orders(keyword=${l.productname})}">Buy Now</a>
+            <a class="addcart" th:href="@{/user/addcart(keyword=${l.username})}">Add to cart</a>
+          </div>
+        </div>
+      </div>
+      <div class="description" th:each="l : ${list}">
+        <span>Product Description </span>
+        <p th:text="${l.description}"></p>
+      </div>
+      <div class="shopname_rating" th:each="l : ${list}">
+        <span class="shopname" th:text="${l.username}"></span>
+        
+      </div>
+      <div class="reportseller">
+        <form action="/user/reportseller" method="GET" class="main_search_box gen_box_shadow">
+          <input
+            type="text"
+            name="searchtext"
+            placeholder="Report seller or get support"
+            id="searchtext"
+          />
+          <button type="submit">Report</button>
+        </form>
+      </div>
+      
+    </main>
+
+    <!-- JavaScript link -->
+    <script th:src="@{/js/main_script.js}" type="text/javascript"></script>
+    <script
+      th:src="@{/js/nav_mobile_slider.js}"
+      type="text/javascript"
+    ></script>
+    <!-- CDN's -->
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://kit.fontawesome.com/f7953d3d50.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

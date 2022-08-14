@@ -20,6 +20,7 @@ public class BlogpostController {
 	@Autowired
 	private PostServiceImpl postServiceImpl;
 	
+	
 	@GetMapping("/user/blogpost")
 	public String searchPage(@RequestParam(required=false,name="category") String category, ProductModel productModel, Model model, String keyword) {
 		
@@ -31,6 +32,7 @@ public class BlogpostController {
 			model.addAttribute("list", list);
 			model.addAttribute("username", username);
 			model.addAttribute("size", list.size());
+			
 	    
 	    }else if(keyword!=null) {
 			List<PostModel> list = postServiceImpl.getByKeyword(keyword);
@@ -45,8 +47,29 @@ public class BlogpostController {
 			model.addAttribute("size", list.size());
 			
 		}
-			  
+	    
 		
 		return "blogpost";
-	}
+}
+	    
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

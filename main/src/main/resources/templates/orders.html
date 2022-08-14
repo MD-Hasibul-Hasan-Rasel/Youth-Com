@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="https://www.thymeleaf.org/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youth com | Confirm purchase</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/base_logo02.png}" />
+    <!-- Latest compiled and minified CSS Bootstrap-->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+
+    <!-- Font awesome CDN -->
+    <link
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/css/login.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/login_responsive.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/generics.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/registration.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/profile.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/admin_sellers.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/confirm_purchase.css}" type="text/css" />
+  </head>
+  <body>
+    <!-- floating contents 
+    <div class="email_modal_overlay">
+      <div class="email_mainbox">
+        
+          
+         <p><span class="colorlightpaste thank_you_text">Thank you!</span> For purchasing this product.<br>
+          Please click the button below to go to the main page </p>
+          <a
+            th:href="@{/index}"
+            class="submit_button submit_button_emailsend gen_box_shadow"
+          >main
+          </a>
+        
+      </div>
+    </div>-->
+
+    <div class="registration_box gen_box_shadow">
+      <div class="topportion_reg">
+        <a th:href="@{/index}" class="base_logo_link">
+          <img
+            th:src="@{/images/base_logo02.png}"
+            alt="main-logo"
+            height="45"
+            width="45"
+          />
+          <img th:src="@{/images/name_site2.png}" alt="youth_com." height="50" />
+        </a>
+        <h1 class="user_login_heading">
+          Confirm Purchase</span>
+        </h1>
+      </div>
+      <div class="user_details"  th:each="l : ${list}">
+        <img
+          th:src="@{'/uploads/' + ${l.username} + '/' + ${l.productno} + '/'
+               				 + ${l.productno} + '.jpg'}"
+          alt="user"
+          class="user_image gen_box_shadow"
+        />
+        <p class="username">
+          Product Name &nbsp; &nbsp;<span class="username_value colorlightblue"
+            th:text="${l.productname}"></span
+          >
+        </p>
+        <p class="email">
+          Product Id  &nbsp; &nbsp;<span class="email_value colorlightblue" th:text="${l.productno}">
+            </span
+          >
+        </p>
+        <p class="email">
+          Seller Name  &nbsp; &nbsp;<span class="email_value colorlightblue" th:text="${l.username}">
+            </span
+          >
+        </p>
+        
+        <form th:action="@{/user/orders}"
+        	  th:object="${orders}"
+        	  method="POST">
+        	  
+    		<select
+              th:field="*{productname}"
+              name="productname"
+              id="category_select"
+              class="input_text_box gen_box_shadow"
+              style="background: transparent; font-size: 1.3rem;"
+            >
+              <option th:value="${l.productname}" th:text="${l.productname}" selected></option>
+            </select>
+            
+          <div class="input_text_box gen_box_shadow">
+            <input type="text" class="form_email input_text" required th:field="*{quantity}" name="quantity"/>
+            <label class="form-label label_text" for=" ">Quantity</label>
+          </div>
+
+          <div class="input_text_box gen_box_shadow">
+            <input type="text" class="form_email input_text" required th:field="*{useraddress}" name="useraddress"/>
+            <label class="form-label label_text" for=" ">buyer address</label>
+          </div>
+
+        <button type="submit" class="edit_profile_btn email_seller">Confirm purchase</button>
+        </form>
+
+      </div>
+      
+            
+    </div>
+
+    <!-- scripts -->
+    <script
+      src="https://kit.fontawesome.com/f7953d3d50.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script th:src="@{/js/generics.js}"></script>
+    <script th:src="@{/js/login.js}"></script>
+    <script th:src="@{/js/admin_seller_generic.js}" type="text/javascript"></script>
+  </body>
+</html>

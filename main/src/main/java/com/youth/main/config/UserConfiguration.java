@@ -64,26 +64,6 @@ public class UserConfiguration
    @Override
    protected void configure(HttpSecurity http) throws Exception {
 	   
-	   /*http.authorizeRequests()
-	   .antMatchers("/*", "/user_registration**", "/css/**", "/js/**", "/images/**")
-	   .permitAll()
-	   .antMatchers("/user/**")
-	   .hasAuthority("USER")
-	   .and()
-	   .formLogin()
-	   .loginPage("/user_login")
-	   .loginProcessingUrl("/user_do_login")
-	   .defaultSuccessUrl("/index")
-	   .permitAll()
-	   .and()
-	   .logout()
-	   .invalidateHttpSession(true)
-	   .clearAuthentication(true)
-	   .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-	   .logoutSuccessUrl("/user_login?logout")
-	   .permitAll();*/
-
-
 	   http.
         authorizeRequests()
             .antMatchers("/css/**", "/js/**", "/images/**", "/svg/**", "/uploads/**").permitAll()
@@ -91,7 +71,6 @@ public class UserConfiguration
             .antMatchers("/searchpage").permitAll()
             .antMatchers("/login").permitAll()
             .antMatchers("/registration").permitAll()
-            // .antMatchers("/landing").hasAnyAuthority("ADMIN","EMPLOYEE")
             .antMatchers("/user/**").hasAuthority("USER")
             .antMatchers("/admin/**").hasAuthority("ADMIN")
             .antMatchers("/seller/**").hasAuthority("SELLER")
@@ -101,7 +80,7 @@ public class UserConfiguration
             .loginPage("/login")
 			.loginProcessingUrl("/do_login")
 			.failureUrl("/login?error=true")
-            .defaultSuccessUrl("/")
+            .defaultSuccessUrl("/index")
             .usernameParameter("username")
             .passwordParameter("password")
             .and().logout()
@@ -109,14 +88,8 @@ public class UserConfiguration
             .logoutSuccessUrl("/login").and().exceptionHandling()
             .accessDeniedPage("/access-denied");
       
-	   /*http.authorizeRequests()
-	   	   .antMatchers("/user/**")
-	   	   .hasRole("USER")
-	   	   .antMatchers("/**")
-	   	   .permitAll()
-	   	   .and()
-	   	   .formLogin()
-           .failureHandler(new AuthenticationFailureHandler() {
+	   
+           /*.failureHandler(new AuthenticationFailureHandler() {
         	   
         	   @Override
         	   public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response,
@@ -129,13 +102,8 @@ public class UserConfiguration
         		   
         	   }
         	   
-           })
-	   	   .loginPage("/user_login")
-	   	   .loginProcessingUrl("/dologin")
-	   	   .defaultSuccessUrl("/")
-	   	   .and()
-	   	   .csrf()
-	   	   .disable();*/
+           })*/
+	   	   
 	   
 	   
 	   

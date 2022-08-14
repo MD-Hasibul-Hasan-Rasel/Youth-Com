@@ -187,7 +187,7 @@
           </a>
         </div>
         <div class="posts">
-          <div class="post" th:each="l : ${list}">
+          <div class="post gen_box_shadow" style="padding: 3rem;" th:each="l : ${list}">
             <div>
               <img
                 th:src="@{'/uploads/' + ${l.username} + '/postdata/' + ${l.postname} + '/'
@@ -230,57 +230,26 @@
               <h1 class="post_heading" th:text="${l.postname}"></h1>
               <p class="post_detail" th:text="${l.description}"></p>
             </div>
-            <div class="all_comments gen_box_shadow">
+            
+            
+          <!--    <div class="all_comments gen_box_shadow">
               
               <button class="collapsible">All Comments</button>
               <div class="content">
                 </label>
-                <div class="tab-content comment_flex">
+                <div class="tab-content comment_flex" >
+                  
                   <div class="comment_box">
-                    <div class="commentator_details">
-                      <h2 class="commentator_name">Hasibul</h2>
-                      <span class="time">09 JUN, 2022</span>
+                    <div class="commentator_details" style="height:5rem; display:flex; align-items:center;">
+                      <h2 class="commentator_name" >Comments are coming soon....</h2>
                     </div>
-                    <p class="commentator_comment">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Aut, sequi.
-                    </p>
+                    
                   </div>
-
-                  <div class="comment_box">
-                    <div class="commentator_details">
-                      <h2 class="commentator_name">Hasibul</h2>
-                      <span class="time">09 JUN, 2022</span>
-                    </div>
-                    <p class="commentator_comment">
-                      Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                      Aut, sequi.
-                    </p>
-                  </div>
+                  
                 </div>
               </div>
-            </div>
-            <div class="like_comment gen_box_shadow">
-              <!-- <button class="thumbs_up_button" title="Like this post">
-                <img
-                  th:src="@{/svg/thumbs_up_gray.svg}"
-                  alt=""
-                  height="25"
-                  class="thumbs_up_image"
-                />
-              </button>
-              <span class="like_count">20</span> -->
-              <form action="" class="comment_form">
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="write a comment.."
-                  class="input_text comment_text_field"
-                />
-                <input type="submit" value="comment" class="comment_button" />
-              </form>
-            </div>
+            </div>-->
+            
           </div>
 
           <div

@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Youth com | Admin Posts</title>
+    <link rel="icon" type="image/x-icon" th:href="@{/images/base_logo02.png}" />
+    <link rel="stylesheet" th:href="@{/css/generics.css}" type="text/css" />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/panel_generics.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/seller_generic.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/seller_post_management.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/admin_dashboard.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/admin_sellers.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/admin_reports.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/admin_post_management.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/admin_forum_management.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/admin_responsive.css}"
+      type="text/css"
+    />
+
+    <link
+      href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css" />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/nav_mobile_slider.css}"
+      type="text/css"
+    />
+    <link rel="stylesheet" th:href="@{/css/blogpost.css}" type="text/css" />
+    <link rel="stylesheet" th:href="@{/css/registration.css}" type="text/css" />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/main_responsive_mobile.css}"
+      type="text/css"
+    />
+    <link
+      rel="stylesheet"
+      th:href="@{/css/main_responsive_tab_ss.css}"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <!-- Thymeleaf included 
+    <div th:if="${session.message}" class="registration_result">
+      <div class="alert alert-info" th:text="${session.message}"></div>
+    </div>-->
+
+    <div class="overlay">
+      <div class="navigation_mobile_slider">
+        <button class="exit_mobile_navigation_slider">
+          <img th:src="@{/svg/cross.svg}" alt="exit" />
+        </button>
+        <nav class="navigation">
+          <h1 class="admin_heading">
+            Sel<span class="colorlightblue">ler</span>
+          </h1>
+          <a th:href="@{/admin/admin_dashboard}" class="admin_main_button01">
+            <img th:src="@{/svg/dashboard1.svg }" />
+            <span>Dashboard</span>
+          </a>
+          <a th:href="@{/admin/admin_sellers}" class="admin_main_button03">
+            <img th:src="@{/svg/seller.svg }" />
+            <span>Sellers</span>
+          </a>
+          <a th:href="@{/admin/admin_reports}" class="admin_main_button04">
+            <img th:src="@{/svg/report.svg }" />
+            <span>Reports</span>
+          </a>
+          <a
+            th:href="@{/admin/admin_post_management}"
+            class="admin_main_button05"
+          >
+            <img th:src="@{/svg/forum.svg }" />
+            <span>Post Mang.</span>
+          </a>
+          <a th:href="@{/admin/admin_settings}" class="admin_main_button06">
+            <img th:src="@{/svg/settings.svg }" />
+            <span>Profile</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Header portion -->
+    <header>
+      <div class="topbar_box">
+        <div class="topbar header_primary_section">
+          <a th:href="@{/index}" class="base_logo_link">
+            <img
+              th:src="@{/images/base_logo02.png}"
+              alt="main-logo"
+              height="40"
+              width="40"
+            />
+            <img
+              th:src="@{/images/name_site2.png}"
+              alt="youth_com."
+              height="45"
+            />
+          </a>
+
+          <div class="user_essn">
+            <div class="user_profile gen_box_shadow">
+              <div sec:authorize="isAuthenticated()">
+                <img
+                  class="user_profile_img"
+                  th:src="@{'/uploads/' + ${username} + '/'
+                	+ ${username} + '.jpg'}"
+                  alt="user_profile"
+                />
+              </div>
+
+              <div sec:authorize="!isAuthenticated()">
+                <img
+                  class="user_profile_img"
+                  th:src="@{/images/anonymous.png}"
+                  alt="user_profile"
+                />
+              </div>
+
+              <span
+                sec:authentication="principal.username"
+                sec:authorize="isAuthenticated()"
+              ></span>
+              <span sec:authorize="!isAuthenticated()">User</span>
+
+              <div class="profile_logout">
+                <div sec:authorize="isAuthenticated()">
+                  <!-- <a class="view_profile" href="#">View profile</a>-->
+                  <a class="logout" th:href="@{/logout}">Logout</a>
+                </div>
+                <div sec:authorize="!isAuthenticated()">
+                  <a class="login" th:href="@{/login}">Login</a>
+                </div>
+              </div>
+            </div>
+            <!-- <h1 class="forum_heading">
+              Ad<span class="colorlightblue">min</span>
+            </h1> -->
+            <div class="bell_cart">
+              <button class="menu_button">
+                <img th:src="@{/svg/menu_hamburgar.svg}" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <div class="admin_main">
+        <div class="admin_main_sidebar gen_box_shadow">
+          <h1 class="admin_heading">
+            Sel<span class="colorlightblue">ler</span>
+          </h1>
+          <a th:href="@{/admin/admin_dashboard}" class="admin_main_button01">
+            <img th:src="@{/svg/dashboard1.svg }" />
+            <span>Dashboard</span>
+          </a>
+          <a th:href="@{/admin/admin_sellers}" class="admin_main_button03">
+            <img th:src="@{/svg/seller.svg }" />
+            <span>Sellers</span>
+          </a>
+          <a th:href="@{/admin/admin_reports}" class="admin_main_button04">
+            <img th:src="@{/svg/report.svg }" />
+            <span>Reports</span>
+          </a>
+          <a
+            th:href="@{/admin/admin_post_management}"
+            class="admin_main_button05"
+          >
+            <img th:src="@{/svg/forum.svg }" />
+            <span>Post Mang.</span>
+          </a>
+          <a th:href="@{/admin/admin_settings}" class="admin_main_button06">
+            <img th:src="@{/svg/settings.svg }" />
+            <span>Profile</span>
+          </a>
+        </div>
+
+        <div class="seller_list dashboard_main">
+          <h1 class="seller_requests" th:if="${size==0}">Create new post</h1>
+
+          <form
+            th:action="@{/admin/admin_post_management}"
+            th:object="${post}"
+            method="POST"
+            enctype="multipart/form-data"
+            th:if="${size==0}"
+          >
+            <select
+              th:field="*{username}"
+              name="username"
+              id="category_select"
+              class="input_text_box gen_box_shadow"
+              style="opacity: 0 !important; height: 1px !important"
+            >
+              <option th:value="${username}" selected></option>
+            </select>
+
+            <div class="file_box">
+              <label class="file_label" for=" ">Please upload your image </label
+              ><img
+                id="target"
+                height="100"
+                width="100"
+                class="uploaded_image gen_box_shadow"
+              />
+              <div class="file_upload_box gen_box_shadow">
+                <input
+                  type="file"
+                  class="form_password_retype input_text gen_box_shadow image_file_upload"
+                  accept="image/*"
+                  name="image"
+                  id="file"
+                  onchange="putImage()"
+                />
+                <img th:src="@{/svg/upload_image.svg}" alt="image uplaod" />
+              </div>
+            </div>
+
+            <select
+              th:field="*{category}"
+              name="category"
+              id="category_select"
+              class="input_text_box gen_box_shadow"
+            >
+              <option value="Select a category" disabled selected>
+                Select a category
+              </option>
+              <option value="Job Posts">Job Posts</option>
+              <option value="Product Review">Product Review</option>
+              <option value="Event & Seminar Info">Event & Seminar Info</option>
+              <option value="Contest Alert">Contest Alert</option>
+              <option value="Experience Sharing">Experience Sharing</option>
+              <option value="Case Studies">Case Studies</option>
+            </select>
+
+            <div class="input_text_box gen_box_shadow">
+              <input
+                type="text"
+                class="input_text"
+                placeholder="Product title"
+                th:field="*{postname}"
+                name="postname"
+              />
+            </div>
+
+            <div class="form_textbox_field input_text_box gen_box_shadow">
+              <textarea
+                th:field="*{description}"
+                name="description"
+                class="input_text"
+                placeholder="Post description"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              value="add post"
+              class="submit_button submit_button_emailsend gen_box_shadow"
+            >
+              <img th:src="@{/svg/send.svg}" alt="send" class="post_new" />
+            </button>
+          </form>
+
+          <h1 class="seller_requests">Your post</h1>
+
+          <div th:if="${size==0}" style="margin-left: 1rem; font-size: 1.5rem">
+            <p>you dont have any post.</p>
+          </div>
+
+          <div class="prev_posts" th:if="${size > 0}">
+            <div class="post_box gen_box_shadow" th:each="pr1 : ${posts}">
+              <img
+                th:src="@{'/uploads/' + ${pr1.username} + '/postdata/' + ${pr1.postname} + '/'
+               				+ ${pr1.postname}  + '.jpg'}"
+                alt="primg"
+                height="100"
+                width="100"
+              /><br /><br />
+              <span class="category_tag" th:text="${pr1.category}"></span><br />
+              <span
+                class="post_date"
+                style="font-size: 1.3rem"
+                th:text="${pr1.date}"
+              ></span
+              ><br />
+              <span
+                class="post_date"
+                style="font-weight: bold; font-size: 2rem"
+                th:text="${pr1.postname}"
+              ></span
+              ><br /><br />
+              <p class="prev_post_message" th:text="${pr1.description}"></p>
+              <div th:if="${size>0}">
+                <a
+                  style="
+                    font-size: 1.5rem;
+                    height: fit-content !important;
+                    width: fit-content !important;
+                    padding: 1rem 3rem !important;
+                    display: flex !important;
+                    justify-content: center !important;
+                    color: #fff !important;
+                    cursor: pointer;
+                    margin: 3rem 2rem;
+                  "
+                  class="submit_button submit_button_emailsend gen_box_shadow"
+                  th:href="@{/deletePost(postId=${pr1.id})}"
+                  >Delete Post</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- JavaScript link -->
+    <script th:src="@{/js/main_script.js}" type="text/javascript"></script>
+    <script
+      th:src="@{/js/nav_mobile_slider.js}"
+      type="text/javascript"
+    ></script>
+    <script
+      th:src="@{/js/admin_seller_generic.js}"
+      type="text/javascript"
+    ></script>
+    <script th:src="@{/js/generics.js}"></script>
+    <!-- CDN's -->
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://kit.fontawesome.com/f7953d3d50.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

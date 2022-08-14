@@ -50,8 +50,7 @@ public class PostServiceImpl implements PostService{
     	
 //    	getting current date
     	SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
-        Date date = new Date();  
-        System.out.println();  
+        Date date = new Date(); 
     	
     	PostModel productModel = new PostModel(
     			postDto.getUsername(),

@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Youth com | Forum</title>
+    <title>Youth com | Searchpage</title>
     <link rel="icon" type="image/x-icon" th:href="@{/images/base_logo02.png}" />
 
     <link rel="stylesheet" th:href="@{/css/generics.css}" type="text/css" />
@@ -29,19 +29,20 @@
         </button>
         <h2 class="your_cart">Your Cart</h2>
         <div class="cart_items">
-          <div class="cart_item">
+          <div class="cart_item" th:each="l : ${listCart}">
             <div class="cart_img_h2">
               <img
-                th:src="@{/images/red_dragon_headphone_small.jpg}"
+                th:src="@{'/uploads/' + ${l.sellername} + '/' + ${l.productno} + '/'
+               				 + ${l.productno} + '.jpg'}"
                 alt="red"
                 height="50"
                 width="60"
               />
-              <h2 class="cart_item_h2">product title</h2>
+              <h2 th:text="${l.productname}"></h2><br/>
+              <h4 th:text="${l.sellername}"></h4><br/>
             </div>
 
-            <!-- <button class="cart_item_discard ">Discard</button> -->
-            <button class="cart_item_discard">Discard</button>
+            <a th:href="@{/deleteCartsearchpage(cartId=${l.id})}" class="btn btn-danger cart_item_discard">Discard</a>
           </div>
         </div>
         <a th:href="@{/#}" class="checkout">Checkout</a>
@@ -58,20 +59,18 @@
         <div class="notification_items">
           <div class="notification_item">
             <div class="notification_img_h2">
-              <!-- <img
-                th:src="@{/images/red_dragon_headphone_small.jpg"
-                alt="red"
-                height="50"
-                width="60"
-              /> -->
-              <h2 class="notification_item_h2">
-                <div class="not_text">Hello There! Welcome</div>
-              </h2>
+              <div sec:authorize="isAuthenticated()">
+              	<h2 class="notification_item_h2">
+                	<div class="not_text">Hello There! Welcome</div>
+              	</h2>
+              </div>
+              <div sec:authorize="!isAuthenticated()">
+              	<h2 class="notification_item_h2" style="color: #777; text-align: center;">
+                	No notification available!
+              	</h2>
+              </div>
             </div>
 
-            <button class="notification_item_remove">
-              <img th:src="@{/svg/cross.svg}" alt="" height="20" />
-            </button>
           </div>
         </div>
       </div>
@@ -84,57 +83,52 @@
         <div class="user_profile user_profile_nav">
           <img
             class="user_profile_img"
-            th:src="@{/images/anonymous.png}"
+            th:src="@{'/uploads/' + ${username} + '/'
+                	+ ${username} + '.jpg'}"
             alt="user_profile"
           /><span><!--UserName-->Hasibul</span>
         </div>
         <nav class="navigation category_posts">
-          <h2>Sort<span> BY</span></h2>
+          <!-- <h2>Sort<span> BY</span></h2>
           <div class="sort">
             <a th:href="@{/#}">Name Z to A</a>
             <a th:href="@{/#}">Price Low to high</a>
             <a th:href="@{/#}">Price high to Low</a>
-          </div>
+          </div>-->
 
           <h2>Categ<span>ories</span></h2>
-          <a th:href="@{/}" class="category_button01">
+          <a th:href="@{/searchpageAside(keyword='Electronics')}" class="category_button01">
             <span>Electronics</span>
           </a>
-          <a th:href="@{/}" class="category_button02">
+          <a th:href="@{/searchpageAside(keyword='Wearings')}" class="category_button02">
             <span>Wearings</span>
           </a>
-          <a th:href="@{/}" class="category_button03">
+          <a th:href="@{/searchpageAside(keyword='Groceries')}" class="category_button03">
             <span>Groceries</span>
           </a>
-          <a th:href="@{/}" class="category_button04">
+          <a th:href="@{/searchpageAside(keyword='Sports')}" class="category_button04">
             <span>Sports</span>
           </a>
-          <a th:href="@{/}" class="category_button05">
-            <span>Electronics</span>
+          <a th:href="@{/searchpageAside(keyword='Phones')}" class="category_button05">
+            <span>Phones</span>
           </a>
-          <a th:href="@{/}" class="category_button06">
+          <a th:href="@{/searchpageAside(keyword='Service')}" class="category_button06">
             <span>Dgt. Service</span>
           </a>
         </nav>
-        <!-- 
-        <form action="" method="" class="main_search_box gen_box_shadow">
-          <input
-            type="text"
-            name="searchtext"
-            placeholder="Search for something.."
-            id="searchtext"
-            class="searchtext_nav"
-          />
-          <button type="submit">GO</button>
-        </form> -->
 
         <div class="bell_cart_nav">
-          <button class="notification_button">
-            <span>5</span>
-            <i class="fa-solid fa-bell"></i>
+          <button class="notification_button gen_box_shadow" sec:authorize="isAuthenticated()">
+                <span class="notification_count">1</span>
+                <i class="fa-solid fa-bell"></i>
+              </button>
+              
+              <button class="notification_button  gen_box_shadow" sec:authorize="!isAuthenticated()">
+                <span class="notification_count">0</span>
+                <i class="fa-solid fa-bell"></i>                
           </button>
-          <button class="cart_button">
-            <span>4</span>
+          <button class="cart_button  gen_box_shadow">
+            <span th:text="${count}"></span>
             <i class="fa-solid fa-shopping-cart"></i>
           </button>
         </div>
@@ -206,14 +200,19 @@
               </div>
             </div>
             <div class="bell_cart">
-              <button class="notification_button">
-                <span>5</span>
+              <button class="notification_button" sec:authorize="isAuthenticated()">
+                <span class="notification_count">1</span>
                 <i class="fa-solid fa-bell"></i>
               </button>
+              
+              <button class="notification_button" sec:authorize="!isAuthenticated()">
+                <span class="notification_count">0</span>
+                <i class="fa-solid fa-bell"></i>                
+          	  </button>
               <button class="cart_button">
-                <span>4</span>
-                <i class="fa-solid fa-shopping-cart"></i>
-              </button>
+            		<span th:text="${count}"></span>
+            		<i class="fa-solid fa-shopping-cart"></i>
+          	  </button>
               <button class="menu_button">
                 <img th:src="@{/svg/menu_hamburgar.svg}" />
               </button>
@@ -226,37 +225,44 @@
     <main>
       <div class="category_posts">
         <div class="category gen_box_shadow subtopbar">
-          <h2>Sort<span> BY</span></h2>
+          <!-- <h2>Sort<span> BY</span></h2>
           <div class="sort">
             <a th:href="@{/}">Name Z to A</a>
             <a th:href="@{/}">Price Low to high</a>
             <a th:href="@{/}">Price high to Low</a>
-          </div>
+          </div>-->
 
           <h2>Categ<span>ories</span></h2>
-          <a th:href="@{/}" class="category_button01">
+           <a th:href="@{/searchpageAside(keyword='Electronics')}" class="category_button01">
             <span>Electronics</span>
           </a>
-          <a th:href="@{/}" class="category_button02">
+          <a th:href="@{/searchpageAside(keyword='Wearings')}" class="category_button02">
             <span>Wearings</span>
           </a>
-          <a th:href="@{/}" class="category_button03">
+          <a th:href="@{/searchpageAside(keyword='Groceries')}" class="category_button03">
             <span>Groceries</span>
           </a>
-          <a th:href="@{/}" class="category_button04">
+          <a th:href="@{/searchpageAside(keyword='Sports')}" class="category_button04">
             <span>Sports</span>
           </a>
-          <a th:href="@{/}" class="category_button05">
-            <span>Electronics</span>
+          <a th:href="@{/searchpageAside(keyword='Phones')}" class="category_button05">
+            <span>Phones</span>
           </a>
-          <a th:href="@{/}" class="category_button06">
+          <a th:href="@{/searchpageAside(keyword='Service')}" class="category_button06">
             <span>Dgt. Service</span>
           </a>
         </div>
-        <div class="search_box_container">
         
-        <div th:each="l : ${list}">
-          <a class="card gen_box_shadow" th:href="@{/#}"  style="border: 1px solid #ced4da;">
+        
+        
+        <div class="search_box_container" >
+        <h1 th:if="${productlistsize==0}" style="color: #777; font-size: 3rem;
+        display: block; width: 100% !important; text-align:center;grid-column:1/-1;">No product found . ☹</h1>
+        
+        <div th:each="l : ${list}" th:if="${productlistsize>0}">
+          <a 
+           th:href="@{/product_page(keyword=${l.productname})}"
+           class="card gen_box_shadow" style="border: 1px solid #ced4da;">
             <div class="img">
               <img 
               th:src="@{'/uploads/' + ${l.username} + '/' + ${l.productno} + '/'

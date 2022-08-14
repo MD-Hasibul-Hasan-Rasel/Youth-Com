@@ -46,22 +46,36 @@
         </button>
         <h2 class="your_cart">Your Cart</h2>
         <div class="cart_items">
-          <div class="cart_item">
+          <div class="cart_item" th:each="l : ${listCart}">
             <div class="cart_img_h2">
               <img
-                th:src="@{/images/red_dragon_headphone_small.jpg}"
+                th:src="@{'/uploads/' + ${l.sellername} + '/' + ${l.productno} + '/'
+               				 + ${l.productno} + '.jpg'}"
                 alt="red"
                 height="50"
                 width="60"
               />
-              <h2 class="cart_item_h2">product title</h2>
+              <h2 th:text="${l.productname}"></h2>
+              <br />
+              <h4 th:text="${l.sellername}"></h4>
+              <br />
             </div>
 
-            <!-- <button class="cart_item_discard ">Discard</button> -->
-            <button class="btn btn-danger cart_item_discard">Discard</button>
+            <a
+              th:href="@{/deleteCartindex(cartId=${l.id})}"
+              class="btn btn-danger cart_item_discard"
+              >Discard</a
+            >
           </div>
         </div>
-        <a href="#" class="checkout">Checkout</a>
+
+        <div sec:authorize="isAuthenticated()">
+          <!-- <a th:href="@{/checkoutfromcart(cartId=${l.id})}" class="checkout" >Checkout</a>-->
+        </div>
+
+        <div sec:authorize="!isAuthenticated()">
+          <a href="#" class="checkout" style="display: none">Checkout</a>
+        </div>
       </div>
     </div>
 
@@ -75,30 +89,24 @@
         <div class="notification_items">
           <div class="notification_item">
             <div class="notification_img_h2">
-              <!-- <img
-                src="images/red_dragon_headphone_small.jpg"
-                alt="red"
-                height="50"
-                width="60"
-              /> -->
-              <h2 class="notification_item_h2">
-                <div class="not_text">Hello There! Welcome</div>
-              </h2>
+              <div sec:authorize="isAuthenticated()">
+                <h2 class="notification_item_h2">
+                  <div class="not_text">Hello There! Welcome</div>
+                </h2>
+              </div>
+              <div sec:authorize="!isAuthenticated()">
+                <h2
+                  class="notification_item_h2"
+                  style="color: #777; text-align: center"
+                >
+                  No notification available!
+                </h2>
+              </div>
             </div>
-
-            <button class="notification_item_remove">
-              <img th:src="@{/svg/cross.svg}" alt="" height="20" />
-            </button>
           </div>
         </div>
       </div>
     </div>
-    <!-- <div class="cart_popup_modal nav_menu_slider">
-      <div class="cart_main_box">
-        <button class="exit_cart">&Cross;</button>
-        <h2>Your Cart</h2>
-      </div>
-    </div> -->
 
     <div class="overlay">
       <div class="navigation_mobile_slider">
@@ -107,51 +115,97 @@
         </button>
         <nav class="navigation">
           <h2>Market<span>place</span></h2>
-          <a href="" class="nav_link_button">
+          <a
+            th:href="@{/searchpageAside(keyword='Electronics')}"
+            class="nav_link_button"
+          >
             <img th:src="@{/svg/headphone01.svg} " />
             <span>Electronics</span>
           </a>
-          <a href="" class="nav_link_button">
+          <a
+            th:href="@{/searchpageAside(keyword='Phones')}"
+            class="nav_link_button"
+          >
             <img th:src="@{/svg/mobile_phone.svg }" />
             <span>Phones</span>
           </a>
-          <a href="" class="nav_link_button">
+          <a
+            th:href="@{/searchpageAside(keyword='Wearings')}"
+            class="nav_link_button"
+          >
             <img th:src="@{/svg/t_shirt.svg} " />
             <span>Wearings</span>
           </a>
-          <a href="" class="nav_link_button">
+          <a
+            th:href="@{/searchpageAside(keyword='Groceries')}"
+            class="nav_link_button"
+          >
             <img th:src="@{/svg/groceries.svg}" />
             <span>Groceries</span>
           </a>
-          <a href="" class="nav_link_button">
+          <a
+            th:href="@{/searchpageAside(keyword='Sports')}"
+            class="nav_link_button"
+          >
             <img th:src="@{/svg/football.svg}" />
             <span>Sports</span>
           </a>
-          <a href="" class="nav_link_button">
+          <a
+            th:href="@{/searchpageAside(keyword='Service')}"
+            class="nav_link_button"
+          >
             <img th:src="@{/svg/laptop.svg}" />
             <span>Dgt. Service</span>
           </a>
         </nav>
-        
-        <form th:action="@{/searchpage}" method="POST" class="main_search_box gen_box_shadow">
-            <input
-              type="text"
-              name="keyword" 
-              th:value="${keyword}"
-              placeholder="Search for products.."
-              id="searchtext"
-              class="searchtext_nav"
-            />
-            <button type="submit">GO</button>
-          </form>
+
+        <form
+          th:action="@{/searchpage}"
+          method="GET"
+          class="main_search_box gen_box_shadow"
+          style="display: flex; flex-direction: row"
+        >
+          <input
+            type="text"
+            name="keyword"
+            th:value="${keyword}"
+            placeholder="Search for products.."
+            id="searchtext"
+            class="searchtext_nav"
+          />
+          <button type="submit">GO</button>
+        </form>
 
         <div class="bell_cart_nav">
-          <button class="notification_button gen_box_shadow">
-            <span>5</span>
+          <button
+            class="notification_button gen_box_shadow"
+            sec:authorize="isAuthenticated()"
+          >
+            <span class="notification_count">1</span>
             <i class="fa-solid fa-bell"></i>
           </button>
-          <button class="cart_button gen_box_shadow">
-            <span>4</span>
+
+          <button
+            class="notification_button gen_box_shadow"
+            sec:authorize="!isAuthenticated()"
+          >
+            <span class="notification_count">0</span>
+            <i class="fa-solid fa-bell"></i>
+          </button>
+
+          <button
+            class="cart_button gen_box_shadow"
+            sec:authorize="isAuthenticated()"
+          >
+            <span class="cart_item_count" th:text="${count}"></span>
+            <i class="fa-solid fa-shopping-cart"></i>
+          </button>
+
+          <button
+            class="cart_button gen_box_shadow"
+            sec:authorize="!isAuthenticated()"
+          >
+            <span class="cart_item_count">0</span>
             <i class="fa-solid fa-shopping-cart"></i>
           </button>
         </div>
@@ -175,20 +229,23 @@
               height="45"
             />
           </a>
-          
-          <form th:action="@{/searchpage}" method="GET" class="main_search_box gen_box_shadow"
-          style="flex-direction: row;">
+
+          <form
+            th:action="@{/searchpage}"
+            method="GET"
+            class="main_search_box gen_box_shadow"
+            style="flex-direction: row"
+          >
             <input
               type="text"
-              name="keyword" 
+              name="keyword"
               th:value="${keyword}"
               placeholder="Search for products.."
               id="searchtext"
             />
             <button type="submit">GO</button>
           </form>
-          
-          
+
           <div class="user_essn">
             <div class="user_profile gen_box_shadow">
               <!--  
@@ -231,18 +288,32 @@
               </div>
             </div>
             <div class="bell_cart">
-              <button class="notification_button">
+              <button
+                class="notification_button"
+                sec:authorize="isAuthenticated()"
+              >
+                <span class="notification_count">1</span>
+                <i class="fa-solid fa-bell"></i>
+              </button>
+
+              <button
+                class="notification_button"
+                sec:authorize="!isAuthenticated()"
+              >
                 <span class="notification_count">0</span>
                 <i class="fa-solid fa-bell"></i>
-                <!-- <div class="notification_dropdown">
-                  <div class="not_text">Hello There! Welcome</div>
-                  
-                </div> -->
               </button>
-              <button class="cart_button">
+
+              <button class="cart_button" sec:authorize="isAuthenticated()">
+                <span class="cart_item_count" th:text="${count}"></span>
+                <i class="fa-solid fa-shopping-cart"></i>
+              </button>
+
+              <button class="cart_button" sec:authorize="!isAuthenticated()">
                 <span class="cart_item_count">0</span>
                 <i class="fa-solid fa-shopping-cart"></i>
               </button>
+
               <button class="menu_button">
                 <img th:src="@{/svg/menu_hamburgar.svg}" />
               </button>
@@ -286,38 +357,23 @@
             <div class="slide_01 slides_common">
               <img
                 th:src="@{/images/red_dragon_headphone_medium.jpg}"
-                alt="Red dragon Headphone"
+                alt="img"
               />
             </div>
             <div class="slide_02 slides_common">
-              <img
-                th:src="@{/images/usman-yousaf-headphone01.jpg}"
-                alt="Red dragon Headphone"
-              />
+              <img th:src="@{/images/Phones.jpg}" alt="img" />
             </div>
             <div class="slide_03 slides_common">
-              <img
-                th:src="@{/images/red_dragon_headphone_medium.jpg}"
-                alt="Red dragon Headphone"
-              />
+              <img th:src="@{/images/Wearings 2.jpg}" alt="img" />
             </div>
             <div class="slide_04 slides_common">
-              <img
-                th:src="@{/images/usman-yousaf-headphone01.jpg}"
-                alt="Red dragon Headphone"
-              />
+              <img th:src="@{/images/Groceries 3.jpg}" alt="img" />
             </div>
             <div class="slide_05 slides_common">
-              <img
-                th:src="@{/images/red_dragon_headphone_medium.jpg}"
-                alt="Red dragon Headphone"
-              />
+              <img th:src="@{/images/Sports 1.jpg}" alt="img" />
             </div>
             <div class="slide_06 slides_common">
-              <img
-                th:src="@{/images/usman-yousaf-headphone01.jpg}"
-                alt="Red dragon Headphone"
-              />
+              <img th:src="@{/images/Dgt Service 2.jpg}" alt="img" />
             </div>
 
             <div class="slide_box">
@@ -328,47 +384,65 @@
                   >Purchase premium quality headphones from our retail sellers
                   with optimum price. </span
                 ><br />
-                <a href="#">Purchase Now</a>
+                <a th:href="@{/searchpageAside(keyword='Electronics')}"
+                  >Purchase Now</a
+                >
               </div>
               <div class="slide_02_text slide_text_common">
-                <h1 class="slide_text_common_h1">Purchase Headphones</h1>
+                <h1 class="slide_text_common_h1">Wanna Change Your Device ?</h1>
                 <br /><span class="slide_text_common_span"
-                  >Purchase premium quality headphones from our retail sellers
-                  with optimum price. </span
+                  >All the latest updated official smart & feature phones are
+                  available here. Just chose your one. </span
                 ><br />
-                <a href="#">Purchase Now</a>
+                <a th:href="@{/searchpageAside(keyword='Phones')}"
+                  >Purchase Now</a
+                >
               </div>
               <div class="slide_03_text slide_text_common">
-                <h1 class="slide_text_common_h1">Purchase Headphones</h1>
+                <h1 class="slide_text_common_h1">Try Something Different</h1>
                 <br /><span class="slide_text_common_span"
-                  >Purchase premium quality headphones from our retail sellers
-                  with optimum price. </span
+                  >Prioritise your choice and pick the best one, suitable for
+                  you. Discounts are available now. </span
                 ><br />
-                <a href="#">Purchase Now</a>
+                <a th:href="@{/searchpageAside(keyword='Wearings')}"
+                  >Purchase Now</a
+                >
               </div>
               <div class="slide_04_text slide_text_common">
-                <h1 class="slide_text_common_h1">Purchase Headphones</h1>
+                <h1 class="slide_text_common_h1">
+                  Missing the unadulterated fruit?
+                </h1>
                 <br /><span class="slide_text_common_span"
-                  >Purchase premium quality headphones from our retail sellers
-                  with optimum price. </span
+                  >We are providing fresh and organic seasonal fruits and
+                  grocery items with super-fast delivery service. So, why are
+                  you waiting! </span
                 ><br />
-                <a href="#">Purchase Now</a>
+                <a th:href="@{/searchpageAside(keyword='Groceries')}"
+                  >Purchase Now</a
+                >
               </div>
               <div class="slide_05_text slide_text_common">
-                <h1 class="slide_text_common_h1">Purchase Headphones</h1>
+                <h1 class="slide_text_common_h1">Back to the Field</h1>
                 <br /><span class="slide_text_common_span"
-                  >Purchase premium quality headphones from our retail sellers
-                  with optimum price. </span
+                  >Looking for some sports items ? We have a large collection of
+                  jersey, toy and sports items which motivate you to go back to
+                  the field. </span
                 ><br />
-                <a href="#">Purchase Now</a>
+                <a th:href="@{/searchpageAside(keyword='Sports')}"
+                  >Purchase Now</a
+                >
               </div>
               <div class="slide_06_text slide_text_common">
-                <h1 class="slide_text_common_h1">Purchase Headphones</h1>
+                <h1 class="slide_text_common_h1">Show Your Creativity</h1>
                 <br /><span class="slide_text_common_span"
-                  >Purchase premium quality headphones from our retail sellers
-                  with optimum price. </span
+                  >Finding experts in digital marketing, design, development,
+                  teaching, right ? Here you can find almost every kind of
+                  digital and freelancing services. Also freelance tutor and
+                  online courses. So, be a part of us from your first purchase. </span
                 ><br />
-                <a href="#">Purchase Now</a>
+                <a th:href="@{/searchpageAside(keyword='Service')}"
+                  >Purchase Now</a
+                >
               </div>
 
               <div class="indicatordiv">
@@ -394,9 +468,12 @@
     <!-- main portion of the wesite -->
     <main>
       <div class="toprated">
-        <h1 class="toprated_h1">Top Rated Products</h1>
+        <h1 class="toprated_h1">Products</h1>
         <div class="toprated_cards">
-          <a class="toprated_card card1 gen_box_shadow" href="#">
+          <a
+            class="toprated_card card1 gen_box_shadow"
+            th:href="@{/searchpageAside(keyword='')}"
+          >
             <div class="img">
               <img th:src="@{/images/red_dragon_headphone_medium.jpg}" alt="" />
             </div>
@@ -406,9 +483,12 @@
               &nbsp;&nbsp;&nbsp;<span class="offer_percentage">-5%</span>
             </div>
           </a>
-          <a class="toprated_card card2 gen_box_shadow" href="#">
+          <a
+            class="toprated_card card2 gen_box_shadow"
+            th:href="@{/searchpageAside(keyword='')}"
+          >
             <div class="img">
-              <img th:src="@{/images/red_dragon_headphone_medium.jpg}" alt="" />
+              <img th:src="@{/images/Phones.jpg}" alt="" />
             </div>
             <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
             <div class="price">
@@ -416,9 +496,12 @@
               &nbsp;&nbsp;&nbsp;<span class="offer_percentage">-5%</span>
             </div>
           </a>
-          <a class="toprated_card card3 gen_box_shadow" href="#">
+          <a
+            class="toprated_card card3 gen_box_shadow"
+            th:href="@{/searchpageAside(keyword='')}"
+          >
             <div class="img">
-              <img th:src="@{/images/red_dragon_headphone_medium.jpg}" alt="" />
+              <img th:src="@{/images/Wearings 2.jpg}" alt="" />
             </div>
             <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
             <div class="price">
@@ -426,9 +509,12 @@
               &nbsp;&nbsp;&nbsp;<span class="offer_percentage">-5%</span>
             </div>
           </a>
-          <a class="toprated_card card4 gen_box_shadow" href="#">
+          <a
+            class="toprated_card card4 gen_box_shadow"
+            th:href="@{/searchpageAside(keyword='')}"
+          >
             <div class="img">
-              <img th:src="@{/images/red_dragon_headphone_medium.jpg}" alt="" />
+              <img th:src="@{/images/Groceries 3.jpg}" alt="" />
             </div>
             <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
             <div class="price">
@@ -436,9 +522,12 @@
               &nbsp;&nbsp;&nbsp;<span class="offer_percentage">-5%</span>
             </div>
           </a>
-          <a class="toprated_card card5 gen_box_shadow" href="#">
+          <a
+            class="toprated_card card5 gen_box_shadow"
+            th:href="@{/searchpageAside(keyword='')}"
+          >
             <div class="img">
-              <img th:src="@{/images/red_dragon_headphone_medium.jpg}" alt="" />
+              <img th:src="@{/images/Sports 3.jpg}" alt="" />
             </div>
             <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
             <div class="price">
@@ -446,9 +535,12 @@
               &nbsp;&nbsp;&nbsp;<span class="offer_percentage">-5%</span>
             </div>
           </a>
-          <a class="toprated_card card6 gen_box_shadow" href="#">
+          <a
+            class="toprated_card card6 gen_box_shadow"
+            th:href="@{/searchpageAside(keyword='')}"
+          >
             <div class="img">
-              <img th:src="@{/images/red_dragon_headphone_medium.jpg}" alt="" />
+              <img th:src="@{/images/Dgt Service 1.jpg}" alt="" />
             </div>
             <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
             <div class="price">
@@ -456,9 +548,12 @@
               &nbsp;&nbsp;&nbsp;<span class="offer_percentage">-5%</span>
             </div>
           </a>
-          <a class="toprated_card card7 gen_box_shadow" href="#">
+          <a
+            class="toprated_card card7 gen_box_shadow"
+            th:href="@{/searchpageAside(keyword='')}"
+          >
             <div class="img">
-              <img th:src="@{/images/red_dragon_headphone_medium.jpg}" alt="" />
+              <img th:src="@{/images/Electronics 3.jpg}" alt="" />
             </div>
             <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
             <div class="price">
@@ -466,9 +561,12 @@
               &nbsp;&nbsp;&nbsp;<span class="offer_percentage">-5%</span>
             </div>
           </a>
-          <a class="toprated_card card8 gen_box_shadow" href="#">
+          <a
+            class="toprated_card card8 gen_box_shadow"
+            th:href="@{/searchpageAside(keyword='')}"
+          >
             <div class="img">
-              <img th:src="@{/images/red_dragon_headphone_medium.jpg}" alt="" />
+              <img th:src="@{/images/Dgt Service 2.jpg}" alt="" />
             </div>
             <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
             <div class="price">
@@ -478,96 +576,7 @@
           </a>
         </div>
         <div class="see_more_div">
-          <a href="#">Find more</a>
-        </div>
-      </div>
-
-      <div class="toprated selling">
-        <h1 class="toprated_h1">Digital Services</h1>
-        <div class="toprated_cards">
-          <a class="toprated_card card1 gen_box_shadow" href="#">
-            <div class="img">
-              <img th:src="@{/images/usman-yousaf-headphone01.jpg}" alt="" />
-            </div>
-            <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
-            <div class="price">
-              Starts from
-              <span class="toprated_card_price">1300</span> TK
-            </div>
-          </a>
-          <a class="toprated_card card2 gen_box_shadow" href="#">
-            <div class="img">
-              <img th:src="@{/images/usman-yousaf-headphone01.jpg}" alt="" />
-            </div>
-            <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
-            <div class="price">
-              Starts from
-              <span class="toprated_card_price">1300</span> TK
-            </div>
-          </a>
-          <a class="toprated_card card3 gen_box_shadow" href="#">
-            <div class="img">
-              <img th:src="@{/images/usman-yousaf-headphone01.jpg}" alt="" />
-            </div>
-            <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
-            <div class="price">
-              Starts from
-              <span class="toprated_card_price">1300</span> TK
-            </div>
-          </a>
-          <a class="toprated_card card4 gen_box_shadow" href="#">
-            <div class="img">
-              <img th:src="@{/images/usman-yousaf-headphone01.jpg}" alt="" />
-            </div>
-            <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
-            <div class="price">
-              Starts from
-              <span class="toprated_card_price">1300</span> TK
-            </div>
-          </a>
-          <a class="toprated_card card5 gen_box_shadow" href="#">
-            <div class="img">
-              <img th:src="@{/images/usman-yousaf-headphone01.jpg}" alt="" />
-            </div>
-            <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
-            <div class="price">
-              Starts from
-              <span class="toprated_card_price">1300</span> TK
-            </div>
-          </a>
-          <a class="toprated_card card6 gen_box_shadow" href="#">
-            <div class="img">
-              <img th:src="@{/images/usman-yousaf-headphone01.jpg}" alt="" />
-            </div>
-            <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
-            <div class="price">
-              Starts from
-              <span class="toprated_card_price">1300</span> TK
-            </div>
-          </a>
-          <a class="toprated_card card7 gen_box_shadow" href="#">
-            <div class="img">
-              <img th:src="@{/images/usman-yousaf-headphone01.jpg}" alt="" />
-            </div>
-            <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
-            <div class="price">
-              Starts from
-              <span class="toprated_card_price">1300</span> TK
-            </div>
-          </a>
-          <a class="toprated_card card8 gen_box_shadow" href="#">
-            <div class="img">
-              <img th:src="@{/images/usman-yousaf-headphone01.jpg}" alt="" />
-            </div>
-            <h1>Product name Lorem ipsum dolor sit, amet consectetur</h1>
-            <div class="price">
-              Starts from
-              <span class="toprated_card_price">1300</span> TK
-            </div>
-          </a>
-        </div>
-        <div class="see_more_div">
-          <a href="#">Find more</a>
+          <a th:href="@{/searchpageAside(keyword='')}">Find more</a>
         </div>
       </div>
 
@@ -575,7 +584,7 @@
         <h1 class="posts_h1">Blogpost</h1>
         <div class="post">
           <img
-            th:src="@{/images/red_dragon_headphone_small.jpg}"
+            th:src="@{/uploads/apple1234/postdata/Client Service Opportunity/Client Service Opportunity.jpg}"
             alt="post related image"
             height="150"
           />
@@ -587,7 +596,7 @@
                 class="tag_img"
                 height="15"
               />
-              <span class="tag">Tag</span>
+              <span class="tag">Job Posts</span>
             </div>
 
             <div>
@@ -597,7 +606,7 @@
                 class="author_img"
                 height="15"
               />
-              <span class="author">Author</span>
+              <span class="author">apple1234</span>
             </div>
 
             <div>
@@ -607,79 +616,50 @@
                 class="date_img"
                 height="15"
               />
-              <span class="date">09 JUN, 2022</span>
+              <span class="date">12/08/2022 22:49:02</span>
             </div>
           </div>
 
-          <h1 class="post_heading">This is the post title</h1>
+          <h1 class="post_heading">Client Service Opportunity</h1>
           <p class="post_detail">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda
-            in quibusdam tempora autem veritatis, rem voluptatem dolorem quam a
-            vitae temporibus, quod eum facere perspiciatis minima cupiditate
-            atque omnis fugit. Voluptate magni labore, sed eligendi mollitia
-            soluta maiores! Quisquam aut a dolorem explicabo perspiciatis
-            corrupti facilis nihil fuga. Praesentium, nam.
+            If you think you are responsible, good at managing clients and
+            creative, then we are looking for you! Brand & Visual is a Dhaka &
+            Kolkata-based brand marketing agency that works for branding
+            strategy, creatives, digital, print, photography, videography, web,
+            app, bot & event. We are looking for an intern for client servicing
+            in our team. Requirements: > Must be pro-active > Good at
+            communication both in Bangla & English > Ability to take the
+            workload > Intention to work for a long period of time Benefits: >
+            Job confirmation after internship period, depending on the
+            performance. > Friendly work environment > Opportunity to learn
+            digital marketing > Lunch, Snacks & Tea/Coffee Job Details: > Full
+            Time > Work Days: Sunday to Thursday > Work Hours: 11:00 AM to 7:00
+            PM > Job Location: Niketon, Gulshan 1, Dhaka > Internship Period: 4
+            Months > Remuneration: 5000 taka To apply mail us your resume at
+            jobs@brandandvisual.com Use subject line as 'Apply for internship'.
           </p>
-          <!-- <div class="like_comment gen_box_shadow">
-            <button class="thumbs_up_button" title="Like this post">
-              <img
-                th:src="@{/svg/thumbs_up_gray.svg"
-                alt=""
-                height="25"
-                class="thumbs_up_image"
-              />
-            </button>
-            <span class="like_count">20</span>
-            <form action="" class="comment_form">
-              <input
-                type="text"
-                name=""
-                id=""
-                placeholder="write a comment.."
-                class="input_text comment_text_field"
-              />
-              <input type="submit" value="comment" class="comment_button" />
-            </form>
-          </div> -->
-          <div class="all_comments gen_box_shadow">
-            <div class="tab">
-              <input type="checkbox" id="chckp" />
-              <label class="tab-label" for="chckp"> All comments </label>
-              <div class="tab-content comment_flex">
-                <div class="comment_box">
-                  <div class="commentator_details">
-                    <h2 class="commentator_name">Hasibul</h2>
-                    <span class="time">09 JUN, 2022</span>
-                  </div>
-                  <p class="commentator_comment">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Aut, sequi.
-                  </p>
-                </div>
-                <div class="comment_box">
-                  <div class="commentator_details">
-                    <h2 class="commentator_name">Hasibul</h2>
-                    <span class="time">09 JUN, 2022</span>
-                  </div>
-                  <p class="commentator_comment">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                    Aut, sequi.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+
           <div class="blogpost_categories">
-            <a href="#">Product Review</a>
-            <a href="#">Job Posts</a>
-            <a href="#">Event/Seminar Info</a>
-            <a href="#">Contest Alert</a>
-            <a href="#">Experience Sharing</a>
-            <a href="#">Case Studies</a>
+            <a th:href="@{/user/blogpost(category='Product Review')}"
+              >Product Review</a
+            >
+            <a th:href="@{/user/blogpost(category='Job Posts')}">Job Posts</a>
+            <a th:href="@{/user/blogpost(category='Event/Seminar Info')}"
+              >Event/Seminar Info</a
+            >
+            <a th:href="@{/user/blogpost(category='Contest Alert')}"
+              >Contest Alert</a
+            >
+            <a th:href="@{/user/blogpost(category='Experience Sharing')}"
+              >Experience Sharing</a
+            >
+            <a th:href="@{/user/blogpost(category='Case Studies')}"
+              >Case Studies</a
+            >
           </div>
         </div>
         <div class="see_more_div">
-          <a href="blogpost.html">View more</a>
+          <a th:href="@{/user/blogpost}">View more</a>
         </div>
       </div>
 
@@ -775,20 +755,20 @@
             <a th:href="@{/index}" class="footer_main_a">Home</a>
             <a th:href="@{/login}" class="footer_main_a">SignIn</a>
             <a th:href="@{/registration}" class="footer_main_a">Registration</a>
-            <a th:href="@{/seller_login}" class="footer_main_a"
-              >Seller SignIn</a
+            <a th:href="@{/seller/seller_products}" class="footer_main_a"
+              >Seller</a
             >
-            <a th:href="@{/seller_registration}" class="footer_main_a"
-              >Seller Registration</a
+            <a th:href="@{/admin/admin_dashboard}" class="footer_main_a"
+              >Admin</a
             >
           </div>
           <div class="contacts_footer flex_column">
-            <h2>Contacts</h2>
-            <a href="" class="footer_main_a">Get Support</a>
+            <h2>Others</h2>
+            <!--<a href="" class="footer_main_a">Get Support</a>-->
             <a th:href="@{/user/user_profile}" class="footer_main_a">Profile</a>
             <a th:href="@{/user/blogpost}" class="footer_main_a">Blogspot</a>
-            <a href="" class="footer_main_a">Categories</a>
-            <a href="" class="footer_main_a">Contact</a>
+            <!--<a th:href="@{/user/orders}" class="footer_main_a">Your orders</a>
+            <a href="" class="footer_main_a">Contact</a>-->
           </div>
           <div class="connections_and_about">
             <div class="about flex_column">

@@ -98,13 +98,16 @@ public class UserRegistrationController {
 		        Path uploadPath = Paths.get(uploadDir);
 		        
 //				Email sending		               
+		        		        
 		        EmailDetails emailDetails = new EmailDetails();
-		        emailDetails.setRecipient(email);
-		        emailDetails.setSubject("Registration successfull.");
-		        emailDetails.setMsgBody("Dear Sir/Madam, we are very happy to have you with us. Start shopping . Or you can also "
-        				+ "join the community.");
+		        emailDetails.setRecipient(userRegistrationDto.getEmail());
+		        emailDetails.setSubject("Sign up successful.");
+		        emailDetails.setMsgBody("<h1 style='color:#3fa9f5;'>Youth Com.</h1>"
+		        		+ "<span style='color: #51cf66; font-weight: bold;'>Registration Successful.</span>"
+		        		+ "Dear Sir/Madam, thanks for choosing us.");
+		        emailDetails.setAttachment("./src/main/resources/static/images/base_logo02.png");
 		        
-		        emailService.sendSimpleMail(emailDetails);
+		        emailService.sendMailWithHTMLOnly(emailDetails);
 		        
 		        
 		        if(!Files.exists(uploadPath)){

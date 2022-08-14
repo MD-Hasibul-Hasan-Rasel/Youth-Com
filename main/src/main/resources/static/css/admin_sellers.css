@@ -84,7 +84,7 @@ main {
 
 .seller_request_container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
 }
 
 .seller_data {
@@ -176,8 +176,8 @@ main {
 
 .email_seller,
 .remove_seller {
-  font-size: 1.5rem;
-  padding: 0.5rem 1rem;
+  font-size: 1.8rem;
+  padding: 1rem 2rem;
   border: none;
   color: #fff;
   margin: 0 0.5rem 0 0;
@@ -201,7 +201,42 @@ main {
   background-color: #ff7575;
 }
 
-@media (max-width: 850px) {
+form {
+  width: fit-content !important;
+}
+
+/* Edit */
+
+.seller_data_box {
+  display: flex;
+  font-size: 1.7rem;
+  width: 80%;
+  align-items: center;
+  justify-content: space-between;
+  margin: 3rem 1rem;
+  padding: 2rem;
+  border-radius: 1rem;
+  border: #777 1px solid;
+}
+
+.seller_data_box img {
+  border-radius: 5rem;
+}
+
+.nav_profile {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.6rem;
+  margin: 2rem;
+  align-items: center;
+}
+
+.nav_profile img {
+  height: 5rem;
+  width: 5rem;
+}
+
+@media (max-width: 970px) {
   body,
   html {
     font-size: 8px !important;
@@ -215,6 +250,31 @@ main {
     grid-template-columns: repeat(1, 1fr);
   }
 
+  .form_textbox_field {
+    height: 15rem !important;
+    /* width: 30rem !important; */
+  }
+
+  .seller_data_box {
+    flex-direction: column;
+    gap: 1rem;
+    margin: 0 auto;
+  }
+
+  .user_essn {
+    margin-left: 1rem;
+  }
+
+  .user_profile {
+    display: none !important;
+  }
+
+  .searchtext_nav {
+    width: 100% !important;
+  }
+}
+
+@media (max-width: 650px) {
   .form_textbox_field {
     height: 15rem !important;
     width: 30rem !important;

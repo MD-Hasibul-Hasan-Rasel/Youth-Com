@@ -2,13 +2,20 @@ package com.youth.main.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import com.youth.main.controller.dto.ReportDto;
 import com.youth.main.model.CartModel;
 import com.youth.main.model.ProductModel;
 import com.youth.main.repository.CartRepository;
@@ -52,6 +59,21 @@ public class ProductPageController {
 			model.addAttribute("count",count);	
 			
 		return "product_page";
+	}
+	
+	@PostMapping("/user/product_page")
+	public String userOrdersCreate(@Valid @ModelAttribute("orderconfirm") ReportDto reportDto,
+									  BindingResult result,
+									  Model model,
+									  HttpSession session) {
+		
+		Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
+	    String username = loggedInUser.getName(); 
+		
+		List<ProductModel> rlist = productServiceImpl.getByKeyword(reportDto.getProductname());
+		
+		
+		return "redirect:/index";
 	}
 }
 

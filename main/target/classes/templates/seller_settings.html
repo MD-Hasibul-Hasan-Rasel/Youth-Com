@@ -5,11 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Youth com | Seller Profile</title>
-    <link
-      rel="icon"
-      type="image/x-icon"
-      th:href="@{/images/base_logo02.png}"
-    />
+    <link rel="icon" type="image/x-icon" th:href="@{/images/base_logo02.png}" />
     <link rel="stylesheet" th:href="@{/css/main.css}" type="text/css" />
     <link rel="stylesheet" th:href="@{/css/generics.css}" type="text/css" />
     <link
@@ -254,24 +250,25 @@
 
         <div class="seller_list dashboard_main">
           <div class="user_details" th:each="user : ${userdata}">
-        		<img
-        		th:src="@{'/uploads/' + ${user.username} + '/'
+            <img
+              th:src="@{'/uploads/' + ${user.username} + '/'
         				+ ${user.username} + '.jpg'}"
-          		alt="user"
-          		class="user_image gen_box_shadow"
-        		/>
-        		<p class="username">
-          		Username: &nbsp;<span class="username_value colorlightblue" th:text="${user.username}"
-            		></span
-          		>
-        		</p>
-        		<p class="email">
-          		Email: &nbsp;<span class="email_value colorlightblue" th:text="${user.email}">
-            		</span
-          		>
-        		</p>
-
-           <!--   <button class="edit_profile_btn email_seller">Edit profile</button> -->
+              alt="user"
+              class="user_image gen_box_shadow"
+            />
+            <p class="username">
+              Username: &nbsp;<span
+                class="username_value colorlightblue"
+                th:text="${user.username}"
+              ></span>
+            </p>
+            <p class="email">
+              Email: &nbsp;<span
+                class="email_value colorlightblue"
+                th:text="${user.email}"
+              >
+              </span>
+            </p>
           </div>
         </div>
 

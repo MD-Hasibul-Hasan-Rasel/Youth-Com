@@ -41,11 +41,30 @@
               <h2 th:text="${l.productname}"></h2><br/>
               <h4 th:text="${l.sellername}"></h4><br/>
             </div>
+            
+            <div style="display: flex; align-items:center; gap: 2rem;">
 
-            <a th:href="@{/deleteCartsearchpage(cartId=${l.id})}" class="btn btn-danger cart_item_discard">Discard</a>
+			<a
+              th:href="@{/user/orders(keyword=${l.productname})}"
+              class="btn btn-primary "
+              style="width:fit-content; font-size: 15px; padding: 1rem 1.5rem;
+              background-color: #0069D9; text-decoration: none; color: #fff;
+              border-radius: 3.75px !important;"
+              >Checkout</a
+            >
+            <a
+              th:href="@{/deleteCartindex(cartId=${l.id})}"
+              class="btn btn-danger cart_item_discard"
+              style="border-radius: 3.75px !important; margin: 0;"
+              >Discard</a
+            >
+			
+			</div>
+
+          <!--    <a th:href="@{/deleteCartsearchpage(cartId=${l.id})}" class="btn btn-danger cart_item_discard">Discard</a>
+          -->
           </div>
         </div>
-        <a th:href="@{/#}" class="checkout">Checkout</a>
       </div>
     </div>
 

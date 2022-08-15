@@ -60,12 +60,23 @@
               <h4 th:text="${l.sellername}"></h4>
               <br />
             </div>
+			
+			<div style="display: flex; align-items:center; gap: 2rem;">
 
+			<a
+              th:href="@{/user/orders(keyword=${l.productname})}"
+              class="btn btn-primary "
+              style="width:fit-content; font-size: 15px; padding: 1rem 1.5rem"
+              >Checkout</a
+            >
             <a
               th:href="@{/deleteCartindex(cartId=${l.id})}"
               class="btn btn-danger cart_item_discard"
+              style="border-radius: 3.75px !important; margin: 0;"
               >Discard</a
             >
+			
+			</div>
           </div>
         </div>
 
@@ -361,19 +372,19 @@
               />
             </div>
             <div class="slide_02 slides_common">
-              <img th:src="@{/images/Phones.jpg}" alt="img" />
+              <img th:src="@{/images/christian-wiediger-ZYLmudR28SA-unsplash.jpg}" alt="img" />
             </div>
             <div class="slide_03 slides_common">
-              <img th:src="@{/images/Wearings 2.jpg}" alt="img" />
+              <img th:src="@{/images/keagan-henman-xPJYL0l5Ii8-unsplash.jpg}" alt="img" />
             </div>
             <div class="slide_04 slides_common">
-              <img th:src="@{/images/Groceries 3.jpg}" alt="img" />
+              <img th:src="@{/images/alexander-schimmeck-ks5flsI1mNo-unsplash.jpg}" alt="img" />
             </div>
             <div class="slide_05 slides_common">
-              <img th:src="@{/images/Sports 1.jpg}" alt="img" />
+              <img th:src="@{/images/tuv-rheinland-recreation-and-sports-equipment.jpg}" alt="img" />
             </div>
             <div class="slide_06 slides_common">
-              <img th:src="@{/images/Dgt Service 2.jpg}" alt="img" />
+              <img th:src="@{/images/carlos-muza-hpjSkU2UYSU-unsplash.jpg}" alt="img" />
             </div>
 
             <div class="slide_box">
@@ -479,7 +490,7 @@
             </div>
             <h1>Premium quality headphones</h1>
             <div class="price">
-              <span class="toprated_card_price">3000</span> TK
+             Starts from <span class="toprated_card_price">3000</span> TK
             </div>
           </a>
           <a
@@ -487,11 +498,11 @@
             th:href="@{/searchpageAside(keyword='')}"
           >
             <div class="img">
-              <img th:src="@{/images/Phones.jpg}" alt="" />
+              <img th:src="@{/images/christian-wiediger-ZYLmudR28SA-unsplash.jpg}" alt="" />
             </div>
             <h1>Latest android mobile phone</h1>
             <div class="price">
-              <span class="toprated_card_price">13000</span> TK
+              Starts from <span class="toprated_card_price">13000</span> TK
             </div>
           </a>
           <a
@@ -499,11 +510,11 @@
             th:href="@{/searchpageAside(keyword='')}"
           >
             <div class="img">
-              <img th:src="@{/images/Wearings 2.jpg}" alt="" />
+              <img th:src="@{/images/keagan-henman-xPJYL0l5Ii8-unsplash.jpg}" alt="" />
             </div>
             <h1>Premium cotton t-shirts</h1>
             <div class="price">
-              <span class="toprated_card_price">600</span> TK
+              Starts from <span class="toprated_card_price">600</span> TK
             </div>
           </a>
           <a
@@ -511,11 +522,11 @@
             th:href="@{/searchpageAside(keyword='')}"
           >
             <div class="img">
-              <img th:src="@{/images/Groceries 3.jpg}" alt="" />
+              <img th:src="@{/images/alexander-schimmeck-ks5flsI1mNo-unsplash.jpg}" alt="" />
             </div>
             <h1>Pure chemical free fruits</h1>
             <div class="price">
-              <span class="toprated_card_price">500</span> TK
+              Starts from <span class="toprated_card_price">500</span> TK
             </div>
           </a>
           <a
@@ -523,11 +534,11 @@
             th:href="@{/searchpageAside(keyword='')}"
           >
             <div class="img">
-              <img th:src="@{/images/Sports 3.jpg}" alt="" />
+              <img th:src="@{/images/tuv-rheinland-recreation-and-sports-equipment.jpg}" alt="" />
             </div>
             <h1>Sports components</h1>
             <div class="price">
-              <span class="toprated_card_price">1000</span> TK
+              Starts from <span class="toprated_card_price">1000</span> TK
             </div>
           </a>
           <a
@@ -535,11 +546,11 @@
             th:href="@{/searchpageAside(keyword='')}"
           >
             <div class="img">
-              <img th:src="@{/images/Dgt Service 1.jpg}" alt="" />
+              <img th:src="@{/images/carlos-muza-hpjSkU2UYSU-unsplash.jpg}" alt="" />
             </div>
             <h1>Digital service</h1>
             <div class="price">
-              <span class="toprated_card_price">sf 1100</span> TK
+              Starts from <span class="toprated_card_price">1100</span> TK
             </div>
           </a>
           <a
@@ -547,11 +558,11 @@
             th:href="@{/searchpageAside(keyword='')}"
           >
             <div class="img">
-              <img th:src="@{/images/Electronics 3.jpg}" alt="" />
+              <img th:src="@{/images/he-junhui-agE9Lf26h68-unsplash.jpg}" alt="" />
             </div>
-            <h1>Regular mouse and keyborards</h1>
+            <h1>Latest Xiaomi android mobile phones</h1>
             <div class="price">
-              <span class="toprated_card_price">1300</span> TK
+              Starts from <span class="toprated_card_price">1300</span> TK
             </div>
           </a>
           <a
@@ -559,11 +570,11 @@
             th:href="@{/searchpageAside(keyword='')}"
           >
             <div class="img">
-              <img th:src="@{/images/Dgt Service 2.jpg}" alt="" />
+              <img th:src="@{/images/jacob-spaccavento-ac39FtNWTgU-unsplash.jpg}" alt="" />
             </div>
-            <h1>Web designing and SEO</h1>
+            <h1>Gaming solution nintendo switch</h1>
             <div class="price">
-              <span class="toprated_card_price">2200</span> TK
+              Starts from <span class="toprated_card_price">2200</span> TK
             </div>
           </a>
         </div>

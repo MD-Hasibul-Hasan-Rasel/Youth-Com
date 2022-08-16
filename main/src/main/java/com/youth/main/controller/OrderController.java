@@ -85,7 +85,8 @@ public class OrderController {
 					productlist.get(0).getProductname(),
 					productlist.get(0).getProductno(),
 					productlist.get(0).getUsername(),
-					"pending");
+					"pending",
+					productlist.get(0).getPrice());
 			
 			orderRepository.save(orderModel);
 			
@@ -99,7 +100,7 @@ public class OrderController {
 	        		+ "Dear Sir/Madam, your purchase otp is : "+ otp
 	        		+ "<p style='color:#fa5252;'>Please do not share your otp with anyone"
 	        		+ " until your order reaches you.</p>"
-	        		+ "<p style='color:#51cf66;'>Only provide this otp to the seller after your product"
+	        		+ "<p style='color:#51cf66;'>Only provide this otp to the seller after your product "
 	        		+ "is properly delivered to you.</p>"
 	        		+ "<br/>"
 	        		+ "<p>Thanks for choosing <span style='color:#3fa9f5;' >Youth Com</span> </p>"	);

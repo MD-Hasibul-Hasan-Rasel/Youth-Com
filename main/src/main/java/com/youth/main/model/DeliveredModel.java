@@ -10,8 +10,8 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "orders")
-public class OrderModel {
+@Table(name = "orderdelivered")
+public class DeliveredModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,9 +39,9 @@ public class OrderModel {
 	
 	private String price;
 	
-	public OrderModel() {};
+	public DeliveredModel() {};
 
-	public OrderModel(String username, String useremail, String otp, String quantity, String useraddress,
+	public DeliveredModel(String username, String useremail, String otp, String quantity, String useraddress,
 			String productimg, String productname, String productno, String sellername, String status, String price) {
 		super();
 		this.username = username;
@@ -54,7 +54,7 @@ public class OrderModel {
 		this.productno = productno;
 		this.sellername = sellername;
 		this.status = status;
-		this.setPrice(price);
+		this.price = price;
 	}
 
 	public String getUsername() {
@@ -152,8 +152,6 @@ public class OrderModel {
 	public void setPrice(String price) {
 		this.price = price;
 	}
-
-	
 	
 	
 }

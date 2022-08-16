@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.youth.main.controller.dto.OrderReceivedDto;
 import com.youth.main.controller.dto.OrdersDto;
+import com.youth.main.model.DeliveredModel;
 import com.youth.main.model.OrderModel;
 import com.youth.main.model.UserModel;
+import com.youth.main.repository.DeliveredRepository;
 import com.youth.main.repository.OrderRepository;
 import com.youth.main.service.UserService;
 
@@ -30,6 +32,9 @@ public class SellerOrdercontroller {
 	   
 	   @Autowired
 	   private OrderRepository orderRepository;
+	   
+	   @Autowired
+	   private DeliveredRepository deliveredRepository;
 
 	   @GetMapping("/seller/seller_orders")
 	   public String userProfile(Model model) {
@@ -58,10 +63,26 @@ public class SellerOrdercontroller {
 		   
 		   OrderModel orderModel = orderRepository.findByUsername(orderDto.getUsername());
 		   String status = "delivered";
+
 		   
 		   Long id = orderModel.getId();
 		   
 		   if(orderModel.getOtp().equalsIgnoreCase(orderDto.getOtp())) {
+			   
+			   DeliveredModel delivered = new DeliveredModel(
+					    orderModel.getUsername(),
+					    orderModel.getUseremail(),
+					    orderModel.getOtp(),
+					    orderModel.getQuantity(),
+					    orderModel.getUseraddress(),
+					    orderModel.getProductimg(),
+					    orderModel.getProductname(),
+					    orderModel.getProductno(),
+					    orderModel.getSellername(),
+						"delivered",
+						orderModel.getPrice());
+			   
+			   deliveredRepository.save(delivered);
 			   
 			   orderRepository.deleteById(id);
 		   }
